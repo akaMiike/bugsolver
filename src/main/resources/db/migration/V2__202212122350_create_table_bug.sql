@@ -4,7 +4,7 @@ CREATE TABLE Bugs (
     code VARCHAR NOT NULL,
     description VARCHAR NOT NULL,
     user_id INT,
-    CONSTRAINT user_fk FOREIGN KEY (user_id)
+    CONSTRAINT user_bugs_fk FOREIGN KEY (user_id)
                   REFERENCES Users(id)
                   ON UPDATE CASCADE
                   ON DELETE CASCADE
