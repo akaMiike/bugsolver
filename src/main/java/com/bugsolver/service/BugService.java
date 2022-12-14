@@ -14,15 +14,15 @@ public class BugService {
 
     private final BugRepository bugRepository;
 
-    public void save(Bug bug){
-        bugRepository.save(bug);
+    public Bug save(Bug bug){
+        return bugRepository.save(bug);
     }
 
-    public void update(Long id, Bug bug){
+    public Bug update(Long id, Bug bug){
         Bug oldBug = findById(id);
 
         bug.setId(id);
-        bugRepository.save(bug);
+        return bugRepository.save(bug);
     }
 
     public Bug findById(Long id){

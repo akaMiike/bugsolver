@@ -17,17 +17,17 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public void save(User user){
+    public User save(User user){
         if(userRepository.existsByEmail(user.getEmail())){
             throw new AlreadyUsedEmailException();
         }
         else if(userRepository.existsByUsername(user.getUsername())){
             throw new AlreadyUsedUsernameException();
         }
-        userRepository.save(user);
+        return userRepository.save(user);
     }
 
-    public void update(Long id, User user){
+    public User update(Long id, User user){
         if(!userRepository.existsById(id)){
             throw new UserNotFoundException();
         }
@@ -39,7 +39,7 @@ public class UserService {
         }
 
         user.setId(id);
-        userRepository.save(user);
+        return userRepository.save(user);
     }
 
     public void delete(User user){

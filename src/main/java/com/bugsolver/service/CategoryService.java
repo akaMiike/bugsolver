@@ -14,15 +14,15 @@ public class CategoryService {
 
     private final CategoryRepository categoryRepository;
 
-    public void save(Category category){
-        categoryRepository.save(category);
+    public Category save(Category category){
+        return categoryRepository.save(category);
     }
 
-    public void update(Long id, Category category){
+    public Category update(Long id, Category category){
         Category oldCategory = findById(id);
 
         category.setId(id);
-        categoryRepository.save(category);
+        return categoryRepository.save(category);
     }
 
     public Category findById(Long id){
