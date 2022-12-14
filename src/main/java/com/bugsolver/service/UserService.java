@@ -12,10 +12,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public User save(User user){
         if(userRepository.existsByEmail(user.getEmail())){
@@ -42,8 +42,12 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public void delete(User user){
-        userRepository.delete(user);
+    public void deleteById(Long id){
+        if(!userRepository.existsById(id)){
+            throw new UserNotFoundException();
+        }
+
+        userRepository.deleteById(id);
     }
 
     public User findById(Long id){
