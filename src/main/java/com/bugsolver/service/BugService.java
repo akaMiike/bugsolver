@@ -19,7 +19,9 @@ public class BugService {
     }
 
     public Bug update(Long id, Bug bug){
-        Bug oldBug = findById(id);
+        if(!bugRepository.existsById(id)){
+            throw new BugNotFoundException();
+        }
 
         bug.setId(id);
         return bugRepository.save(bug);

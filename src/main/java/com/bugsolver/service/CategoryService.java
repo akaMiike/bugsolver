@@ -19,7 +19,9 @@ public class CategoryService {
     }
 
     public Category update(Long id, Category category){
-        Category oldCategory = findById(id);
+        if(!categoryRepository.existsById(id)){
+            throw new CategoryNotFoundException();
+        }
 
         category.setId(id);
         return categoryRepository.save(category);

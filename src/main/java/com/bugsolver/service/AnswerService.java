@@ -19,7 +19,9 @@ public class AnswerService {
     }
 
     public Answer update(Long id, Answer answer){
-        Answer oldAnswer = findById(id);
+        if(!answerRepository.existsById(id)){
+            throw new AnswerNotFoundException();
+        }
 
         answer.setId(id);
         return answerRepository.save(answer);

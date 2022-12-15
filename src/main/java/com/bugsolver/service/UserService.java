@@ -7,6 +7,7 @@ import com.bugsolver.exception.user.UserNotFoundException;
 import com.bugsolver.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.List;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public User save(User user){
         if(userRepository.existsByEmail(user.getEmail())){
@@ -24,6 +26,8 @@ public class UserService {
         else if(userRepository.existsByUsername(user.getUsername())){
             throw new AlreadyUsedUsernameException();
         }
+
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
@@ -39,6 +43,7 @@ public class UserService {
         }
 
         user.setId(id);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
@@ -52,6 +57,12 @@ public class UserService {
 
     public User findById(Long id){
         return userRepository.findById(id).orElseThrow(
+                () -> new UserNotFoundException()
+        );
+    }
+
+    public User findByUsername(String username){
+        return userRepository.findByUsername(username).orElseThrow(
                 () -> new UserNotFoundException()
         );
     }
