@@ -24,12 +24,14 @@ public class SecurityConfig{
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
-                .csrf().disable()
+                .csrf().disable().headers().frameOptions().disable().and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .userDetailsService(userDetailsService)
                 .addFilterBefore(new JwtFilter(jwtProvider), UsernamePasswordAuthenticationFilter.class)
-                .authorizeHttpRequests().antMatchers(HttpMethod.POST, "/auth/refresh", "/user/register").permitAll()
-                .anyRequest().authenticated().and()
+                .authorizeHttpRequests()
+                    .antMatchers(HttpMethod.POST, "/auth/refresh", "/auth/login", "/user/register").permitAll()
+                    .antMatchers("/h2-console/**").permitAll()
+                    .anyRequest().authenticated().and()
                 .build();
     }
 }

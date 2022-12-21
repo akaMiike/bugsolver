@@ -36,7 +36,7 @@ public class JwtFilter extends OncePerRequestFilter {
     }
 
     public void authenticate(String token){
-        try{
+        if(jwtProvider.isValid(token)){
             var subject = jwtProvider.getSubject(token);
             var roles = jwtProvider.getRole(token);
 
@@ -47,7 +47,7 @@ public class JwtFilter extends OncePerRequestFilter {
                             List.of(new SimpleGrantedAuthority(roles))
                     )
             );
-        } catch(Exception ignored){}
+        }
     }
 
     private Optional<String> getTokenFromHeader(HttpServletRequest request){
