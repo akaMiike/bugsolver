@@ -4,11 +4,11 @@ CREATE TABLE bug_category
     category_id INT NOT NULL,
     bug_id INT NOT NULL,
     CONSTRAINT bug_fk FOREIGN KEY (bug_id)
-        REFERENCES Category (id)
+        REFERENCES Bugs (id)
         ON UPDATE NO ACTION
         ON DELETE NO ACTION,
     CONSTRAINT category_fk FOREIGN KEY (category_id)
-        REFERENCES Bugs (id)
+        REFERENCES Category (id)
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
 );
