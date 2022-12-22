@@ -5,13 +5,14 @@ import com.bugsolver.entity.User;
 import com.bugsolver.service.BugService;
 import com.bugsolver.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequiredArgsConstructor
@@ -21,11 +22,11 @@ public class BugController {
     private final BugService bugService;
     private final UserService userService;
 
-    @GetMapping("/")
-    public ResponseEntity<List<Bug>> getAllBugsPaginated(Pageable pageable,
-                                          @RequestParam("tags") List<String> tags){
+    @GetMapping("")
+    public ResponseEntity<Page<Bug>> getAllBugsPaginated(Pageable pageable,
+                                                         @RequestParam("categories") Set<String> categories){
 
-        return ResponseEntity.ok(null);
+        return ResponseEntity.ok(bugService.findBugsByCategories(pageable, categories));
     }
 
     @GetMapping("/{id}")
@@ -33,7 +34,7 @@ public class BugController {
         return ResponseEntity.ok(bugService.findById(id));
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<Bug> createNewBug(
             Principal principal,
             @RequestBody Bug newBug){

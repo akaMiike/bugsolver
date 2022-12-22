@@ -1,5 +1,6 @@
 package com.bugsolver.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,6 +27,6 @@ public class Category {
     private String name;
 
     @ManyToMany(mappedBy="categories", fetch = FetchType.LAZY)
-    @JsonProperty(access = WRITE_ONLY)
+    @JsonIgnore
     private Set<Bug> bugs = new HashSet<>();
 }

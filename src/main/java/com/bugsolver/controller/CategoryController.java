@@ -26,12 +26,12 @@ public class CategoryController {
         return ResponseEntity.ok(categoryService.findByName(name));
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public ResponseEntity<List<Category>> getAllCategories(){
         return ResponseEntity.ok(categoryService.findAll());
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<Category> createNewCategory(@RequestBody Category category){
         Category categoryCreated = categoryService.save(category);
         return ResponseEntity.status(HttpStatus.CREATED).body(categoryCreated);

@@ -3,6 +3,7 @@ package com.bugsolver.service;
 import com.bugsolver.entity.Bug;
 import com.bugsolver.entity.Category;
 import com.bugsolver.exception.bug.BugNotFoundException;
+import com.bugsolver.exception.category.CategoryNotFoundException;
 import com.bugsolver.repository.BugRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -25,7 +26,7 @@ public class BugService {
                 .map(c -> {
                     Category category;
                     if (c.getId() != null) category = categoryService.findById(c.getId());
-                    else category = categoryService.save(c);
+                    else throw new CategoryNotFoundException();
                     return category;
                 }).collect(Collectors.toSet());
 
@@ -57,6 +58,10 @@ public class BugService {
         bugRepository.deleteById(id);
     }
 
+    public Boolean existsById(Long id){
+        return bugRepository.existsById(id);
+    }
+
     public List<Bug> findAll(){
         return bugRepository.findAll();
     }
@@ -67,5 +72,9 @@ public class BugService {
 
     public Page<Bug> findBugsByUserId(Pageable pageable, Long id){
         return bugRepository.findBugsByUserId(pageable, id);
+    }
+
+    public Page<Bug> findBugsByCategories(Pageable pageable, Set<String> categories){
+        return bugRepository.findBugsByCategories(pageable, categories);
     }
 }
