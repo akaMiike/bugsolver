@@ -2,7 +2,7 @@ CREATE TABLE Answer(
     id SERIAL PRIMARY KEY NOT NULL,
     description VARCHAR NOT NULL,
     code VARCHAR NOT NULL,
-    best_answer BOOLEAN,
+    best_answer BOOLEAN NOT NULL,
     user_id INT NOT NULL,
     bug_id INT NOT NULL,
     CONSTRAINT user_answer_fk FOREIGN KEY (user_id)

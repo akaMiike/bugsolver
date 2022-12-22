@@ -1,4 +1,4 @@
-CREATE TABLE bug_category
+CREATE TABLE Bug_category
 (
     id SERIAL PRIMARY KEY NOT NULL,
     category_id INT NOT NULL,
