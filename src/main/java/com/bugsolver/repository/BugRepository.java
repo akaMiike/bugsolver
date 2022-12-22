@@ -12,7 +12,7 @@ import java.util.Set;
 
 public interface BugRepository extends JpaRepository<Bug, Long> {
 
-    @Query(value = "SELECT * FROM Bugs JOIN User ON Bugs.id_user = User.id AND User.id = :idUser", nativeQuery = true)
+    @Query(value = "SELECT b.* FROM Bugs as b JOIN Users as u ON b.user_id = u.id AND u.id = :idUser", nativeQuery = true)
     Page<Bug> findBugsByUserId(Pageable pageable, @Param("idUser") Long idUser);
 
     @Query(value = "SELECT b.* FROM Bugs as b " +

@@ -12,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -41,9 +43,9 @@ public class UserController {
     @GetMapping("/bugs")
     public ResponseEntity<Page<Bug>> getAllBugsFromUser(
             Pageable pageable,
-            @AuthenticationPrincipal UserDetails userDetails){
+            Principal principal){
 
-        String username = userDetails.getUsername();
+        String username = principal.getName();
         User userLogged = userService.findByUsername(username);
         return ResponseEntity.ok(bugService.findBugsByUserId(pageable, userLogged.getId()));
     }
