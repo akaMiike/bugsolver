@@ -1,32 +1,13 @@
-HELP.md
-target/
-.mvn/
-!**/src/main/**/target/
-!**/src/test/**/target/
-
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
-### IntelliJ IDEA ###
-.idea/
-*.iws
-*.iml
-*.ipr
+# See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # Compiled output
-dist
-tmp
-out-tsc
-bazel-out
+/dist
+/tmp
+/out-tsc
+/bazel-out
 
 # Node
-node_modules
+/node_modules
 npm-debug.log
 yarn-error.log
 
@@ -40,7 +21,7 @@ yarn-error.log
 *.sublime-workspace
 
 # Visual Studio Code
-.vscode/
+.vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
@@ -48,13 +29,13 @@ yarn-error.log
 .history/*
 
 # Miscellaneous
-.angular/cache
+/.angular/cache
 .sass-cache/
-connect.lock
-coverage
-libpeerconnection.log
+/connect.lock
+/coverage
+/libpeerconnection.log
 testem.log
-typings
+/typings
 
 # System files
 .DS_Store
