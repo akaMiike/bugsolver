@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.security.Principal;
 import java.util.Set;
 
@@ -37,7 +38,7 @@ public class BugController {
     @PostMapping("")
     public ResponseEntity<Bug> createNewBug(
             Principal principal,
-            @RequestBody Bug newBug){
+            @Valid @RequestBody Bug newBug){
 
         String username = principal.getName();
         User userLoggedIn = userService.findByUsername(username);
@@ -55,7 +56,7 @@ public class BugController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Bug> updateBugById(@PathVariable("id") Long id,
-                                             @RequestBody Bug bugUpdated){
+                                             @Valid @RequestBody Bug bugUpdated){
         Bug updatedBug = bugService.update(id, bugUpdated);
         return ResponseEntity.ok(updatedBug);
 

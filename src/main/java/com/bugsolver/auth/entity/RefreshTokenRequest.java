@@ -9,9 +9,9 @@ import javax.validation.constraints.NotBlank;
 @Builder
 public class RefreshTokenRequest {
 
-    @NotBlank
+    @NotBlank(message = "auth.refresh-token.bearer-token-not-blank")
     private String bearerToken;
 
-    @NotBlank
+    @NotBlank(message = "auth.refresh-token.refresh-token-not-blank")
     private String refreshToken;
 }

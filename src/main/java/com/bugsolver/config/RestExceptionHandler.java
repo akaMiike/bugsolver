@@ -41,11 +41,12 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         var language = getLanguage((ServletWebRequest) request);
 
         var error = ErrorResponse.builder()
-            .errors(getErrors(ex, language))
-            .path(((ServletWebRequest) request).getRequest().getRequestURI())
-            .status(HttpStatus.BAD_REQUEST.value())
-            .timestamp(LocalDateTime.now())
-            .build();
+                .message("BAD REQUEST 400")
+                .errors(getErrors(ex, language))
+                .path(((ServletWebRequest) request).getRequest().getRequestURI())
+                .status(HttpStatus.BAD_REQUEST.value())
+                .timestamp(LocalDateTime.now())
+                .build();
 
         return ResponseEntity
             .status(HttpStatus.BAD_REQUEST)

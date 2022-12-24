@@ -9,10 +9,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
 
@@ -25,7 +24,7 @@ public class UserController {
     private final BugService bugService;
 
     @PostMapping("/register")
-    public ResponseEntity<User> registerUser(@RequestBody User newUser){
+    public ResponseEntity<User> registerUser(@Valid @RequestBody User newUser){
         User userCreated = userService.save(newUser);
         return ResponseEntity.status(HttpStatus.CREATED).body(userCreated);
     }

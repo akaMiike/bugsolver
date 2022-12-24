@@ -7,9 +7,9 @@ import javax.validation.constraints.NotBlank;
 @Data
 public class AuthTokenRequest {
 
-    @NotBlank
+    @NotBlank(message = "auth.auth-token.username-not-blank")
     private String username;
 
-    @NotBlank
+    @NotBlank(message = "auth.auth-token.password-not-blank")
     private String password;
 }

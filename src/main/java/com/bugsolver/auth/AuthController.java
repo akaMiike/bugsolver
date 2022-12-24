@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/auth")
@@ -21,7 +23,7 @@ public class AuthController {
     private final JwtProvider jwtProvider;
 
     @PostMapping("/login")
-    public ResponseEntity<TokenResponse> login(@RequestBody AuthTokenRequest request){
+    public ResponseEntity<TokenResponse> login(@Valid @RequestBody AuthTokenRequest request){
         authService.authenticate(request);
 
         var authToken = jwtProvider.createAuthToken(request.getUsername());
@@ -42,7 +44,7 @@ public class AuthController {
     }
 
     @PostMapping("/refresh")
-    public ResponseEntity<TokenResponse> refreshToken(@RequestBody RefreshTokenRequest request){
+    public ResponseEntity<TokenResponse> refreshToken(@Valid @RequestBody RefreshTokenRequest request){
         String newAuthToken = jwtProvider.refreshAuthToken(request.getRefreshToken());
 
         var authResponse = TokenResponse.builder()

@@ -8,6 +8,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -26,8 +29,14 @@ public class Bug {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
+
+    @NotBlank(message = "bug.title.not-blank")
     private String title;
+
+    @NotBlank(message = "bug.code.not-blank")
     private String code;
+
+    @NotBlank(message = "bug.description.not-blank")
     private String description;
 
     @JsonProperty(access = READ_ONLY)
@@ -44,5 +53,6 @@ public class Bug {
             joinColumns = @JoinColumn(name = "bug_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
+    @Size(min = 1, message = "bug.categories.not-empty")
     private Set<Category> categories = new HashSet<>();
 }

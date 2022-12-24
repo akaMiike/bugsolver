@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.security.Principal;
 
 @RestController
@@ -26,7 +27,7 @@ public class ReplyController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Reply> createNewReply(Principal principal, @RequestBody Reply newReply){
+    public ResponseEntity<Reply> createNewReply(Principal principal, @Valid @RequestBody Reply newReply){
         String username = principal.getName();
         User userLoggedIn = userService.findByUsername(username);
 

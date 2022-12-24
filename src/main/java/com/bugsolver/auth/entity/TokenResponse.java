@@ -12,5 +12,4 @@ public class TokenResponse {
     private String refreshToken;
     private Instant authTokenExpiresAt;
     private Instant refreshTokenExpiresAt;
-    private String tokenType = "Bearer";
 }

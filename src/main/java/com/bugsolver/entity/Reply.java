@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import java.time.ZonedDateTime;
 
@@ -25,7 +27,10 @@ public class Reply {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
+
+    @NotBlank(message = "reply.description.not-blank")
     private String description;
+
     private String code;
 
     @JsonProperty(access = READ_ONLY)
@@ -42,5 +47,6 @@ public class Reply {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="bug_id")
     @JsonProperty(access = WRITE_ONLY)
+    @NotNull(message = "reply.bug.not-null")
     private Bug bug;
 }

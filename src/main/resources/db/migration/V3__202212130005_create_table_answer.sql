@@ -1,7 +1,7 @@
 CREATE TABLE Answer(
     id SERIAL PRIMARY KEY NOT NULL,
     description VARCHAR NOT NULL,
-    code VARCHAR NOT NULL,
+    code VARCHAR,
     best_answer BOOLEAN NOT NULL,
     user_id INT NOT NULL,
     bug_id INT NOT NULL,
