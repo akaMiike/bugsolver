@@ -1,0 +1,36 @@
+nav {
+    background-color:white;
+    border-top: 4px solid rgb(33, 148, 48);
+}
+
+.nav-item{
+    color: black;
+}
+
+a {
+    text-decoration: none;
+    font-family:'Courier New', Courier, monospace;
+}
+
+.languages button{
+    vertical-align: middle;
+    border: none;
+    background-color: transparent;
+}
+
+.languages img {
+    width: 2rem;
+}
+
+.languages .language-options {
+    display: none;
+    flex-direction: column;
+}
+
+.languages .language-options img {
+    margin-block: 4px;
+}
+
+.languages:hover .language-options{
+    display: flex;
+}
