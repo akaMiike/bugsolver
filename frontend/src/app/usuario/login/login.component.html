@@ -1,1 +1,25 @@
-<h1>login-page works!</h1>
+<div class="root d-flex justify-content-center align-items-center min-vh-100" id="root-background-div">
+    <div class="card shadow" >
+        <div class="card-body p-5" id="div-card-body">
+            <h1 class="display text-center mb-4">Login</h1>
+            <form>
+                <div class="form-group">
+                    <label for="email">{{'LOGIN.EMAIL_LABEL' | translate}}</label>
+                    <input id="email" class="form-control" type="text">
+                </div>
+                <div class="form-group ">
+                    <label for="password">{{'LOGIN.PASSWORD_LABEL' | translate }}</label>
+                    <input id="password" class="form-control" type="password">
+                </div>
+                <div class="mb-3">
+                    <button class="w-100 btn btn-block" id="login-button">{{'LOGIN.ENTER_BUTTON_LABEL' | translate}}</button>
+                </div>
+                <hr>
+                <p class="text-center small" style="margin-bottom:5px;" >{{'LOGIN.REGISTER_DESCRIPTION' | translate}}</p>
+                <div>
+                    <button class="w-100 btn btn-block" id="register-button">{{'LOGIN.REGISTER_BUTTON_LABEL' | translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

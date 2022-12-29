@@ -1,5 +1,13 @@
 {
     "NAVBAR":{
         "REGISTER": "Registrar"
+    },
+
+    "LOGIN":{
+        "EMAIL_LABEL":"Email",
+        "PASSWORD_LABEL": "Senha",
+        "ENTER_BUTTON_LABEL": "Entrar",
+        "REGISTER_DESCRIPTION":"Não possui uma conta ainda?",
+        "REGISTER_BUTTON_LABEL": "Cadastre-se"
     }
 }
