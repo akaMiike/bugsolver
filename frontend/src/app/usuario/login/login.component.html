@@ -1,23 +1,28 @@
 <div class="root d-flex justify-content-center align-items-center min-vh-100" id="root-background-div">
     <div class="card shadow" >
         <div class="card-body p-5" id="div-card-body">
-            <h1 class="display text-center mb-4">Login</h1>
-            <form>
+            <h1 class="display text-center mb-4" id="login-title">Login</h1>
+            <form id="login-form" [formGroup]="form">
                 <div class="form-group">
-                    <label for="email">{{'LOGIN.EMAIL_LABEL' | translate}}</label>
-                    <input id="email" class="form-control" type="text">
+                    <input id="username" class="form-control" formControlName="username" type="text" placeholder="{{'LOGIN.USERNAME_LABEL' | translate}}">
+                    <div class="small" id="error-message" *ngIf="hasError('username')">
+                        {{ getMessageError('username') }}
+                    </div>
                 </div>
+                
                 <div class="form-group ">
-                    <label for="password">{{'LOGIN.PASSWORD_LABEL' | translate }}</label>
-                    <input id="password" class="form-control" type="password">
+                    <input id="password" class="form-control" formControlName="password" type="password" placeholder="{{'LOGIN.PASSWORD_LABEL' | translate }}">
+                    <div class="small" id="error-message" *ngIf="hasError('password')">
+                        {{ getMessageError('password') }}
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <button class="w-100 btn btn-block" id="login-button">{{'LOGIN.ENTER_BUTTON_LABEL' | translate}}</button>
+                <div class="mb-2">
+                    <button class="w-100 btn btn-block" id="login-button" type="submit">{{'LOGIN.ENTER_BUTTON_LABEL' | translate}}</button>
                 </div>
                 <hr>
                 <p class="text-center small" style="margin-bottom:5px;" >{{'LOGIN.REGISTER_DESCRIPTION' | translate}}</p>
                 <div>
-                    <button class="w-100 btn btn-block" id="register-button">{{'LOGIN.REGISTER_BUTTON_LABEL' | translate}}</button>
+                    <button class="w-100 btn btn-block" id="register-button" routerLink="/user/register">{{'LOGIN.REGISTER_BUTTON_LABEL' | translate}}</button>
                 </div>
             </form>
         </div>

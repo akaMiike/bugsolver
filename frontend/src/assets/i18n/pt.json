@@ -1,13 +1,34 @@
 {
+    "FORM_VALIDATIONS":{
+        "REQUIRED": "O campo não pode ser vazio.",
+        "PASSWORD_MIN_LENGTH": "A senha deve possuir no mínimo 8 caracteres.",
+        "INVALID_EMAIL":"E-mail inválido.",
+        "MATCH_PASSWORD": "As senhas não coincidem."
+    },
+
     "NAVBAR":{
-        "REGISTER": "Registrar"
+        "EXPLORE": "Explorar",
+        "SEARCH-BAR": "Procure por bugs pelo título"
     },
 
     "LOGIN":{
-        "EMAIL_LABEL":"Email",
+        "EMAIL_LABEL":"E-mail",
         "PASSWORD_LABEL": "Senha",
         "ENTER_BUTTON_LABEL": "Entrar",
         "REGISTER_DESCRIPTION":"Não possui uma conta ainda?",
-        "REGISTER_BUTTON_LABEL": "Cadastre-se"
+        "REGISTER_BUTTON_LABEL": "Cadastre-se",
+        "USERNAME_LABEL": "Nome de usuário",
+        "NAME_LABEL": "Nome"
+    },
+
+    "REGISTER":{
+        "TITLE": "Registrar",
+        "EMAIL_LABEL":"E-mail",
+        "USERNAME_LABEL": "Nome de usuário",
+        "PASSWORD_LABEL": "Senha",
+        "PASSWORD_CONFIRMATION_LABEL": "Confirme a senha",
+        "ENTER_BUTTON_LABEL":"Criar Conta",
+        "LOGIN_BUTTON_LABEL":"Entrar",
+        "LOGIN_DESCRIPTION":"Já possui uma conta?"
     }
 }

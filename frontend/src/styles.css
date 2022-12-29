@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300&display=swap');
+
+#root-background-div{
+    background: rgb(1,65,28);
+    background: linear-gradient(
+    15deg,
+    rgba(20,20,20) 0%,
+    #17b14a 100%,
+    rgb(35, 158, 51) 30%);
+}
+
