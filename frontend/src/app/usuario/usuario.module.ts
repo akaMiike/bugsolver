@@ -4,6 +4,7 @@ import { UsuarioRoutingModule } from './usuario-routing.module';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,9 @@ import { TranslateModule } from '@ngx-translate/core';
   imports: [
     CommonModule,
     UsuarioRoutingModule,
-    TranslateModule
+    TranslateModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
 })
 export class UsuarioModule { }
