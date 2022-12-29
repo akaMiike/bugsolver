@@ -1,15 +1,18 @@
 nav {
-    background-color:white;
-    border-top: 4px solid rgb(33, 148, 48);
+    background-color: rgb(20, 20, 20);
 }
 
 .nav-item{
-    color: black;
+    color: white;
 }
 
 a {
+    color:white;
     text-decoration: none;
     font-family:'Courier New', Courier, monospace;
+}
+a:hover{
+    color: #17B169;
 }
 
 .languages button{

@@ -1,0 +1,8 @@
+#root-background-div{
+    background: rgb(1,65,28);
+    background: linear-gradient(
+    15deg,
+    rgba(20,20,20) 0%,
+    #17b14a 100%,
+    rgb(35, 158, 51) 30%);
+}
