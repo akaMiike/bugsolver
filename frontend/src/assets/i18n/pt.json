@@ -1,7 +1,7 @@
 {
     "FORM_VALIDATIONS":{
         "REQUIRED": "O campo não pode ser vazio.",
-        "PASSWORD_MIN_LENGTH": "A senha deve possuir no mínimo 8 caracteres.",
+        "PASSWORD_MIN_LENGTH": "Senha deve ter no mínimo 8 caracteres.",
         "INVALID_EMAIL":"E-mail inválido.",
         "MATCH_PASSWORD": "As senhas não coincidem."
     },
