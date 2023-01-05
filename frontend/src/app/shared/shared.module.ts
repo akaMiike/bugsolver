@@ -5,6 +5,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { SharedRoutingModule } from './shared-routing.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     SharedRoutingModule,
     TranslateModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule
   ],
   exports: [
     NavbarComponent,

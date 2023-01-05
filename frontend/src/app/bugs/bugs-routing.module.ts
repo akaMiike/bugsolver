@@ -4,7 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { BugsComponent } from './bugs.component';
 
 const routes: Routes = [
-  {path: '', component: BugsComponent, pathMatch: 'full'}
+  {path: '', component: BugsComponent, pathMatch: 'full'},
+  {path: "**", redirectTo: ''}
 ];
 
 @NgModule({

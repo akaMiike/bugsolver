@@ -11,11 +11,18 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav ml-auto">
-                <li class="nav-item mr-2">
+                <li class="nav-item mr-2" *ngIf="!isLoggedIn">
                     <a routerLink="/user/login" class="btn shadow-none">
                         Login
                     </a>
                 </li>
+                <li *ngIf="isLoggedIn" class="nav-item mr-2">
+                    <span id="welcome-name" class="btn">{{'NAVBAR.WELCOME_LOGGED_USER_MESSAGE' | translate}}, {{getLoggedInUsername()}}</span>
+                </li>
+                <li *ngIf="isLoggedIn" class="nav-item mr-2">
+                    <a routerLink="/user/logout" class="btn shadow-none" (click)="logout()">Logout</a>
+                </li>
+
                 <li class="nav-item">
                     <div>
                         <div class="languages">

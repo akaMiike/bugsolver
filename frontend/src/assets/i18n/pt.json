@@ -8,7 +8,8 @@
 
     "NAVBAR":{
         "EXPLORE": "Explorar",
-        "SEARCH-BAR": "Procure por bugs pelo título"
+        "SEARCH-BAR": "Procure por bugs pelo título",
+        "WELCOME_LOGGED_USER_MESSAGE": "Bem-vindo"
     },
 
     "LOGIN":{
@@ -18,7 +19,9 @@
         "REGISTER_DESCRIPTION":"Não possui uma conta ainda?",
         "REGISTER_BUTTON_LABEL": "Cadastre-se",
         "USERNAME_LABEL": "Nome de usuário",
-        "NAME_LABEL": "Nome"
+        "NAME_LABEL": "Nome",
+        "AUTHENTICATED_SUCESSFULLY": "Autenticado com sucesso.",
+        "LOGOUT_SUCESSFULLY":"Logout feito com sucesso."
     },
 
     "REGISTER":{
