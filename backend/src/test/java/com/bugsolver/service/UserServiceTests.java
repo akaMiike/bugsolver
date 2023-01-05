@@ -33,7 +33,6 @@ public class UserServiceTests {
         User user = new User(
                 1L,
                 "mike.nss",
-                "Michael Nicholas",
                 "mike.nss@abc.com",
                 "123456"
         );
@@ -63,7 +62,6 @@ public class UserServiceTests {
 
         User newUser = new User().builder()
                         .username("mike.nss")
-                        .name("Michael Nicholas")
                         .email("mike.nss@abc.com")
                         .password("123456")
                         .build();
@@ -80,7 +78,6 @@ public class UserServiceTests {
 
         User newUser = new User().builder()
                         .username("mike.nss")
-                        .name("Michael Nicholas")
                         .email("mike.nss@abc.com")
                         .password("123456")
                         .build();
@@ -99,7 +96,6 @@ public class UserServiceTests {
 
         User newUser = new User().builder()
                         .username("mike.nss")
-                        .name("Michael Nicholas")
                         .email("mike.nss@abc.com")
                         .password("123456")
                         .build();
@@ -118,7 +114,6 @@ public class UserServiceTests {
 
         User oldUser = new User().builder()
                         .username("mike.nss")
-                        .name("Michael Nicholas")
                         .email("mike.nss@abc.com")
                         .password("123456")
                         .build();
@@ -138,7 +133,6 @@ public class UserServiceTests {
 
         User oldUser = new User().builder()
                         .username("mike.nss")
-                        .name("Michael Nicholas")
                         .email("mike.nss@abc.com")
                         .password("123456")
                         .build();
@@ -157,7 +151,6 @@ public class UserServiceTests {
 
         User oldUser = new User().builder()
                         .username("mike.nss")
-                        .name("Michael Nicholas")
                         .email("mike.nss@abc.com")
                         .password("123456")
                         .build();
@@ -178,7 +171,6 @@ public class UserServiceTests {
 
         User oldUser = new User().builder()
                         .username("mike.nss")
-                        .name("Michael Nicholas")
                         .email("mike.nss@abc.com")
                         .password("123456")
                         .build();
