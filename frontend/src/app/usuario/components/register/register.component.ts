@@ -3,6 +3,9 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { FormValidationsService } from 'src/app/shared/services/form-validations.service';
 import { CustomValidations } from 'src/app/shared/utils/custom-validations';
+import { UsuarioService } from '../../services/usuario.service';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -10,6 +13,8 @@ import { CustomValidations } from 'src/app/shared/utils/custom-validations';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+
+  loading: boolean = false
 
   form = this.fb.group({
     username: ['',[Validators.required]],
@@ -19,6 +24,9 @@ export class RegisterComponent implements OnInit {
   });
 
   constructor(
+    private userService: UsuarioService,
+    private toastr: ToastrService,
+    private router: Router,
     private translate: TranslateService,
     private fb: FormBuilder,
     private formValidations: FormValidationsService
@@ -34,6 +42,20 @@ export class RegisterComponent implements OnInit {
 
   getMessageError(formControlName: string): string {
     return this.formValidations.getMessageError(this.form, formControlName);
+  }
+
+  register(){
+    this.loading = true
+    this.userService.register(
+      this.form.value.username!!,
+      this.form.value.email!!,
+      this.form.value.password!!
+    ).subscribe(() => {
+      this.toastr.success(
+        this.translate.instant("REGISTER.REGISTERED_SUCCESSFULLY")
+      )
+      this.router.navigate(['/user/login'])
+    }).add(() => this.loading = false)
   }
 
 }

@@ -32,7 +32,8 @@
         "PASSWORD_CONFIRMATION_LABEL": "Confirme a senha",
         "ENTER_BUTTON_LABEL":"Criar Conta",
         "LOGIN_BUTTON_LABEL":"Entrar",
-        "LOGIN_DESCRIPTION":"Já possui uma conta?"
+        "LOGIN_DESCRIPTION":"Já possui uma conta?",
+        "REGISTERED_SUCCESSFULLY":"Conta registrada com sucesso. Você já pode fazer o login!"
     },
 
     "AUTH":{

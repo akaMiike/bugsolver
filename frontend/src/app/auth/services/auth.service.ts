@@ -55,7 +55,7 @@ export class AuthService {
   }
   
   isRefreshTokenExpired(){
-    var refreshTokenExpiresAt = new Date(localStorage.getItem('REFRESH_TOKEN_EXPIRES_AT')!)
+    var refreshTokenExpiresAt = new Date(localStorage.getItem('REFRESH_TOKEN_EXPIRES_AT')!!)
     return new Date().toString() > refreshTokenExpiresAt.toString()
   }
 

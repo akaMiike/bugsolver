@@ -28,7 +28,10 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    <button class="w-100 btn btn-block" id="register-button" type="submit">{{'REGISTER.ENTER_BUTTON_LABEL' | translate}}</button>
+                    <button class="w-100 btn btn-block" id="register-button" [disabled]="loading" type="submit" (click)="register()">
+                        <span *ngIf="!loading">{{'REGISTER.ENTER_BUTTON_LABEL' | translate}}</span>
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status"></span>
+                    </button>
                 </div>
                 <hr>
                 <p class="text-center small" style="margin-bottom:5px;" >{{'REGISTER.LOGIN_DESCRIPTION' | translate}}</p>
