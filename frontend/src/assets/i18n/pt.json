@@ -33,5 +33,9 @@
         "ENTER_BUTTON_LABEL":"Criar Conta",
         "LOGIN_BUTTON_LABEL":"Entrar",
         "LOGIN_DESCRIPTION":"Já possui uma conta?"
+    },
+
+    "AUTH":{
+        "SESSION_EXPIRED": "Sessão expirada, por favor entre novamente."
     }
 }

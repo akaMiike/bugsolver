@@ -48,7 +48,6 @@ export class NavbarComponent implements OnInit {
 
   logout(){
     this.authService.logout()
-    this.router.navigate(["/user/login"])
     this.toastr.success(
       this.translate.instant("LOGIN.LOGOUT_SUCESSFULLY")
     )
