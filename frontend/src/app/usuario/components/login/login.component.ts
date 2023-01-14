@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/auth/services/auth.service';
-import { FormValidationsService } from 'src/app/shared/services/form-validations.service';
+import { FormValidationsService } from 'src/app/shared/service/form-validations.service';
 
 @Component({
   selector: 'app-login',

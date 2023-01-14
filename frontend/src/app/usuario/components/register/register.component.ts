@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { FormValidationsService } from 'src/app/shared/services/form-validations.service';
+import { FormValidationsService } from 'src/app/shared/service/form-validations.service';
 import { CustomValidations } from 'src/app/shared/utils/custom-validations';
-import { UsuarioService } from '../../services/usuario.service';
+import { UserService } from '../../service/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit {
   });
 
   constructor(
-    private userService: UsuarioService,
+    private userService: UserService,
     private toastr: ToastrService,
     private router: Router,
     private translate: TranslateService,

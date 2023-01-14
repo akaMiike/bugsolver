@@ -1,0 +1,15 @@
+<div class="root justify-content-center min-vh-100 p-4" id="root-background-div">
+  <form class="form-inline ">
+    <input class="form-control mr-sm-2" style="width:40%" type="search" placeholder="Buscar por título" aria-label="Search">
+    <ng-multiselect-dropdown class=" mr-sm-2 select-tags multiselect-dropdown" style="width:25%"
+    placeholder="Selecione as tags"
+    [settings]="categoriesDropdownSettings"
+    [data]="categoriesList"
+    ></ng-multiselect-dropdown>
+    <button class="btn my-2 my-sm-0 btn-submit" type="submit">Buscar</button>
+  </form>
+
+  <div class="text-center mt-2 mw-100 vh-100" style="background-color: rgba(40, 40, 40, 0.40); ">
+  </div>
+    
+</div>
