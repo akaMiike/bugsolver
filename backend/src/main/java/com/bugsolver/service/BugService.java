@@ -75,6 +75,10 @@ public class BugService {
     }
 
     public Page<Bug> findBugsByCategories(Pageable pageable, Set<String> categories){
+        if(categories.isEmpty()){
+            return bugRepository.findAll(pageable);
+        }
+        
         return bugRepository.findBugsByCategories(pageable, categories);
     }
 }

@@ -31,6 +31,7 @@ public class SecurityConfig{
                 .addFilterBefore(new JwtFilter(jwtProvider), UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests()
                     .antMatchers(HttpMethod.POST, "/auth/refresh", "/auth/login", "/user/register").permitAll()
+                    .antMatchers("/category/**", "/bug/**").permitAll()
                     .antMatchers("/h2-console/**").permitAll()
                     .anyRequest().authenticated().and()
                 .build();

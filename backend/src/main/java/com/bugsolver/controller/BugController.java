@@ -25,7 +25,7 @@ public class BugController {
 
     @GetMapping("")
     public ResponseEntity<Page<Bug>> getAllBugsPaginated(Pageable pageable,
-                                                         @RequestParam("categories") Set<String> categories){
+                                                         @RequestParam(required = false, defaultValue = "") Set<String> categories){
 
         return ResponseEntity.ok(bugService.findBugsByCategories(pageable, categories));
     }
