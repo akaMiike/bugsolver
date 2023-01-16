@@ -1,5 +1,42 @@
 {
+    "FORM_VALIDATIONS":{
+        "REQUIRED": "Field can't be empty.",
+        "PASSWORD_MIN_LENGTH": "Passoword must have at least 8 characters",
+        "INVALID_EMAIL":"Invalid e-mail",
+        "MATCH_PASSWORD": "Passwords doesn't match"
+    },
+
     "NAVBAR":{
-        "REGISTER": "Register"
+        "EXPLORE": "Explore",
+        "SEARCH-BAR": "Search for bugs by title",
+        "WELCOME_LOGGED_USER_MESSAGE": "Welcome"
+    },
+
+    "LOGIN":{
+        "EMAIL_LABEL":"E-mail",
+        "PASSWORD_LABEL": "Password",
+        "ENTER_BUTTON_LABEL": "Enter",
+        "REGISTER_DESCRIPTION":"Doesn't have an account yet?",
+        "REGISTER_BUTTON_LABEL": "Register",
+        "USERNAME_LABEL": "Username",
+        "NAME_LABEL": "Name",
+        "AUTHENTICATED_SUCESSFULLY": "Autenticated successfully",
+        "LOGOUT_SUCESSFULLY":"Logout sucessfully"
+    },
+
+    "REGISTER":{
+        "TITLE": "Register",
+        "EMAIL_LABEL":"E-mail",
+        "USERNAME_LABEL": "Username",
+        "PASSWORD_LABEL": "Password",
+        "PASSWORD_CONFIRMATION_LABEL": "Confirm password",
+        "ENTER_BUTTON_LABEL":"Create account",
+        "LOGIN_BUTTON_LABEL":"Login",
+        "LOGIN_DESCRIPTION":"Already have an accout?",
+        "REGISTERED_SUCCESSFULLY":"Account registered sucessfully"
+    },
+
+    "AUTH":{
+        "SESSION_EXPIRED": "Session expired, please log in again"
     }
 }
