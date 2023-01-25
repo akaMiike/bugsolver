@@ -19,7 +19,7 @@ export class BugsService {
   getAll(paramConfig: Page<Bug>): Observable<Page<Bug>>{
     return this.http.get<Page<Bug>>(this.URL, {
       params: {
-        page: paramConfig.page,
+        page: paramConfig.page-1,
         size: paramConfig.size,
         sort: paramConfig.sort,
         ...(paramConfig.filters ?? {})

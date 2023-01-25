@@ -1,4 +1,9 @@
 {
+    "PAGINATION":{
+        "PREVIOUS-LABEL": "Anterior",
+        "NEXT-LABEL": "Próximo"
+    },
+
     "FORM_VALIDATIONS":{
         "REQUIRED": "O campo não pode ser vazio.",
         "PASSWORD_MIN_LENGTH": "Senha deve ter no mínimo 8 caracteres.",

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { IDropdownSettings} from 'ng-multiselect-dropdown';
 import { Page } from 'src/app/shared/models/page.model';
@@ -14,6 +15,12 @@ import { BugsService } from '../service/bugs.service';
 export class BugsComponent implements OnInit {
 
   categoriesList : any[] = [];
+  selectedCategories: any[] = [];
+
+  form = this.fb.group({
+    title: [''],
+    categories: new FormControl([] as any[])
+  })
 
   categoriesDropdownSettings: IDropdownSettings = {
     singleSelection: false,
@@ -28,8 +35,8 @@ export class BugsComponent implements OnInit {
 
   pageConfig = new Page<Bug>();
 
-  
   constructor(
+    private fb: FormBuilder,
     private translate: TranslateService,
     private bugService: BugsService,
     private categoryService: CategoryService
@@ -42,8 +49,24 @@ export class BugsComponent implements OnInit {
 
   getBugs(params: Page<Bug>){
     this.bugService.getAll(params).subscribe( (page) => {
+      this.pageConfig.totalElements = page.totalElements;
       this.pageConfig.content = page.content
     })
+  }
+
+  getBugsByPage(page: number){
+    this.pageConfig.page = page;
+    this.getBugs(this.pageConfig);
+  }
+
+  getBugsByFilter(){
+    var categories = this.form.value.categories?.map(category => category.name).filter(c => c).join(',')
+    console.log(categories)
+    this.pageConfig.filters = {
+      title :  this.form.value.title ?? null,
+      categories: categories ?? []
+    };
+    this.getBugs(this.pageConfig);
   }
 
   getCategories(){
