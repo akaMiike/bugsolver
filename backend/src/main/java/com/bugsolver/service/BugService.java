@@ -74,11 +74,18 @@ public class BugService {
         return bugRepository.findBugsByUserId(pageable, id);
     }
 
-    public Page<Bug> findBugsByCategories(Pageable pageable, Set<String> categories){
-        if(categories.isEmpty()){
+    public Page<Bug> findBugsByCategoriesOrTitle(Pageable pageable, Set<String> categories, String title){
+        if(categories.isEmpty() && title.isBlank()){
             return bugRepository.findAll(pageable);
         }
-        
-        return bugRepository.findBugsByCategories(pageable, categories);
+        else if(!categories.isEmpty() && title.isBlank()){
+            return bugRepository.findBugsByCategories(pageable,categories);
+        }
+        else if(categories.isEmpty() && !title.isBlank()){
+            return bugRepository.findBugByTitleContainingIgnoreCase(pageable, title);
+        }
+        else{
+            return bugRepository.findBugsByCategoriesAndTitle(pageable, categories, title);
+        }
     }
 }
