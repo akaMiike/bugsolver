@@ -42,9 +42,9 @@ public class Bug {
     @JsonProperty(access = READ_ONLY)
     private ZonedDateTime created_at = ZonedDateTime.now();
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="user_id")
-    @JsonIgnore
+    @JsonProperty(access = READ_ONLY)
     private User user;
 
     @ManyToMany(fetch = FetchType.LAZY)
