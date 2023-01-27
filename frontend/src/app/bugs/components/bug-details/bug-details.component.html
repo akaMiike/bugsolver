@@ -1,0 +1,25 @@
+<div class="root justify-content-center min-vh-100 p-4" id="root-background-div">
+    <div class="container p-3" style="background-color: white;">
+        <span class="lead font-weight-normal">{{bugDetail.title}}</span>
+        <div class="justify-content-center">
+            <span class="text-muted small">{{"BUG.CREATED-BY-TEXT" | translate}}: </span>
+            <span class="small">{{bugDetail.user.username}}</span>
+            <span class="text-muted small ml-4">{{"BUG.CREATED-AT-TEXT" | translate}}: </span>
+            <span class="small">{{bugDetail.created_at | date: "dd/MM/yyyy HH:mm"}}</span>
+        </div>
+        <hr>
+        <p>{{bugDetail.description}}</p>
+
+        <a class="small text-decoration-none" data-toggle="collapse" data-target="#codeCollapse" role="button" aria-expanded="false" aria-controls="codeCollapse">
+            {{"BUG.SEE-CODE" | translate}} 
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+            </svg>
+        </a>
+        <div class="collapse" id="codeCollapse">
+            <div class="card card-body" style="background-color:#23241f">
+              <code>{{bugDetail.code}}</code>
+            </div>
+        </div>
+    </div>
+</div>    

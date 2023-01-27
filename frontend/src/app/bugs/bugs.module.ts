@@ -6,10 +6,12 @@ import { TranslateModule } from '@ngx-translate/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { BugDetailsComponent } from './components/bug-details/bug-details.component';
 
 @NgModule({
   declarations: [
-    BugsComponent
+    BugsComponent,
+    BugDetailsComponent
   ],
   imports: [
     NgxPaginationModule,

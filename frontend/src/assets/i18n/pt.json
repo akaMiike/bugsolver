@@ -46,6 +46,9 @@
     },
     
     "BUG":{
-        "CREATE-NEW-BUTTON":"Criar Novo"
+        "CREATE-NEW-BUTTON":"Criar Novo",
+        "CREATED-BY-TEXT":"Criado por",
+        "CREATED-AT-TEXT":"Criado em",
+        "SEE-CODE":"Ver código"
     }
 }

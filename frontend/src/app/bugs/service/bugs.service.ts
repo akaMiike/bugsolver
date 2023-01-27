@@ -26,4 +26,8 @@ export class BugsService {
       }
     })
   }
+
+  getById(id: number): Observable<Bug>{
+    return this.http.get<Bug>(this.URL + "/" + id)
+  }
 }
