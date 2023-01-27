@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { IDropdownSettings} from 'ng-multiselect-dropdown';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { Page } from 'src/app/shared/models/page.model';
 import { CategoryService } from 'src/app/shared/service/category.service';
 import { Bug } from '../models/bug.model';
@@ -16,6 +17,7 @@ export class BugsComponent implements OnInit {
 
   categoriesList : any[] = [];
   selectedCategories: any[] = [];
+  isAuthenticated: boolean = false;
 
   form = this.fb.group({
     title: [''],
@@ -37,6 +39,7 @@ export class BugsComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private authService: AuthService,
     private translate: TranslateService,
     private bugService: BugsService,
     private categoryService: CategoryService
@@ -45,6 +48,9 @@ export class BugsComponent implements OnInit {
   ngOnInit() {
     this.getCategories();
     this.getBugs(new Page<Bug>());
+    this.authService.isAuthenticatedObs.subscribe(isAuthenticated => {
+      this.isAuthenticated = isAuthenticated
+    })
   }
 
   getBugs(params: Page<Bug>){
@@ -60,10 +66,11 @@ export class BugsComponent implements OnInit {
   }
 
   getBugsByFilter(){
+    this.pageConfig.page = 1;
     var categories = this.form.value.categories?.map(category => category.name).filter(c => c).join(',')
-    console.log(categories)
+    
     this.pageConfig.filters = {
-      title :  this.form.value.title ?? null,
+      title :  this.form.value.title,
       categories: categories ?? []
     };
     this.getBugs(this.pageConfig);

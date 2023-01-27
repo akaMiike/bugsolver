@@ -1,15 +1,21 @@
 <div class="root justify-content-center min-vh-100 p-4" id="root-background-div">
-  <form class="form-inline" [formGroup]="form">
-    <input class="form-control mr-sm-2" style="width:40%" type="search" placeholder="Buscar por título" aria-label="Search" formControlName="title">
-    <ng-multiselect-dropdown class=" mr-sm-2 select-tags multiselect-dropdown" style="width:25%"
-    formControlName="categories"
-    placeholder="Selecione as tags"
-    [(ngModel)]="selectedCategories"
-    [settings]="categoriesDropdownSettings"
-    [data]="categoriesList"
-    ></ng-multiselect-dropdown>
-    <button class="btn my-2 my-sm-0 btn-submit" type="submit" (click)="getBugsByFilter()">Buscar</button>
-  </form>
+  <div>
+    <form class="form-inline" [formGroup]="form">
+      <input class="form-control mr-sm-2" style="width:40%" type="search" placeholder="Buscar por título" aria-label="Search" formControlName="title">
+      <ng-multiselect-dropdown class=" mr-sm-2 select-tags multiselect-dropdown" style="width:25%"
+      formControlName="categories"
+      placeholder="Selecione as tags"
+      [(ngModel)]="selectedCategories"
+      [settings]="categoriesDropdownSettings"
+      [data]="categoriesList"
+      ></ng-multiselect-dropdown>
+      <button class="btn my-2 my-sm-0 btn-submit" type="submit" (click)="getBugsByFilter()">Buscar</button>
+      
+      <button class="btn btn-info ml-auto" *ngIf="isAuthenticated" type="button">
+        <span>{{"BUG.CREATE-NEW-BUTTON" | translate}}</span>
+      </button>
+    </form>
+  </div>
 
   <div class="mt-2 mw-100 vh-100 p-4 container" style="background-color: rgba(40, 40, 40, 0.40); ">
     <div class="row">

@@ -43,5 +43,9 @@
 
     "AUTH":{
         "SESSION_EXPIRED": "Sessão expirada, por favor entre novamente."
+    },
+    
+    "BUG":{
+        "CREATE-NEW-BUTTON":"Criar Novo"
     }
 }
