@@ -17,15 +17,14 @@ public interface BugRepository extends JpaRepository<Bug, Long> {
     @Query(value = "SELECT b.* FROM Bugs as b JOIN Users as u ON b.user_id = u.id AND u.id = :idUser", nativeQuery = true)
     Page<Bug> findBugsByUserId(Pageable pageable, @Param("idUser") Long idUser);
 
-    @Query(value = "SELECT b FROM Bug b JOIN b.categories c WHERE c.name IN :categories",
-            countQuery = "SELECT count(b) FROM Bug b LEFT JOIN b.categories c WHERE c.name IN :categories"
-    )
+    @Query(value = "SELECT b.* FROM Bugs as b " +
+            "JOIN bug_category as bc ON bc.bug_id = b.id " +
+            "JOIN Category as c ON c.id = bc.category_id and c.name IN :categories", nativeQuery = true)
     Page<Bug> findBugsByCategories(Pageable pageable, @Param("categories") Set<String> categories);
 
-    @Query(value = "SELECT b FROM Bug b JOIN b.categories c " +
-            "WHERE UPPER(b.title) LIKE UPPER(CONCAT('%',:title,'%')) and c.name IN :categories",
-            countQuery = "SELECT count(b) FROM Bug b JOIN b.categories c " +
-            "WHERE UPPER(b.title) LIKE UPPER(CONCAT('%',:title,'%')) and c.name IN :categories"
+    @Query(value = "SELECT b.* FROM Bugs as b " +
+            "JOIN bug_category as bc ON bc.bug_id = b.id " +
+            "JOIN Category as c ON c.id = bc.category_id AND c.name IN :categories AND UPPER(b.title) LIKE UPPER(CONCAT('%',:title,'%'))", nativeQuery = true
     )
     Page<Bug> findBugsByCategoriesAndTitle(Pageable pageable, @Param("categories") Set<String> categories, @Param("title") String title);
 }

@@ -1,17 +1,22 @@
 package com.bugsolver.controller;
 
+import com.bugsolver.entity.Bug;
 import com.bugsolver.entity.Reply;
 import com.bugsolver.entity.User;
 import com.bugsolver.exception.user.NotBugAuthorException;
+import com.bugsolver.service.BugService;
 import com.bugsolver.service.ReplyService;
 import com.bugsolver.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.Set;
 
 @RestController
 @RequiredArgsConstructor
@@ -20,18 +25,25 @@ public class ReplyController {
 
     private final ReplyService replyService;
     private final UserService userService;
+    private final BugService bugService;
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Reply> getReplyById(@PathVariable("id") Long id){
-        return ResponseEntity.ok(replyService.findById(id));
+    @GetMapping("/{bugId}")
+    public ResponseEntity<Page<Reply>> getRepliesByBugId(Pageable pageable, @PathVariable("bugId") Long bugId){
+        return ResponseEntity.ok(replyService.findAllByBugId(pageable, bugId));
     }
 
-    @PostMapping("")
-    public ResponseEntity<Reply> createNewReply(Principal principal, @Valid @RequestBody Reply newReply){
+    @PostMapping("/{bugId}")
+    public ResponseEntity<Reply> createNewReplyForBug(Principal principal,
+                                                      @Valid @RequestBody Reply newReply,
+                                                      @PathVariable("bugId") Long bugId
+    ){
         String username = principal.getName();
         User userLoggedIn = userService.findByUsername(username);
+        Bug bug = bugService.findById(bugId);
 
         newReply.setUser(userLoggedIn);
+        newReply.setBug(bug);
+
         Reply replyCreated = replyService.save(newReply);
         return ResponseEntity.status(HttpStatus.CREATED).body(replyCreated);
     }

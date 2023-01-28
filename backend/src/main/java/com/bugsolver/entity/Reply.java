@@ -46,7 +46,6 @@ public class Reply {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="bug_id")
-    @JsonProperty(access = WRITE_ONLY)
-    @NotNull(message = "reply.bug.not-null")
+    @JsonIgnore
     private Bug bug;
 }

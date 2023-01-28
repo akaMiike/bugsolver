@@ -6,6 +6,8 @@ import com.bugsolver.exception.bug.BugNotFoundException;
 import com.bugsolver.exception.reply.ReplyNotFoundException;
 import com.bugsolver.repository.ReplyRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -43,6 +45,10 @@ public class ReplyService {
 
     public List<Reply> findAll(){
         return replyRepository.findAll();
+    }
+
+    public Page<Reply> findAllByBugId(Pageable pageable, Long bugId){
+        return replyRepository.findAllByBugId(pageable, bugId);
     }
 
     public void delete(Reply reply){
