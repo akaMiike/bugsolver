@@ -39,9 +39,9 @@ public class Reply {
     @JsonProperty(access = READ_ONLY)
     private Boolean best_answer = false;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="user_id")
-    @JsonIgnore
+    @JsonProperty(access = READ_ONLY)
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
