@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute} from '@angular/router';
+import { ActivatedRoute, Router} from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { Page } from 'src/app/shared/models/page.model';
 import { Bug } from '../../models/bug.model';
@@ -31,13 +32,15 @@ export class BugDetailsComponent implements OnInit{
     private bugsService: BugsService,
     private replyService: ReplyService,
     private authService: AuthService,
-    private router: ActivatedRoute,
+    private routerAct: ActivatedRoute,
+    private router: Router,
+    private toastr: ToastrService,
     private fb: FormBuilder,
-    translate: TranslateService
+    private translate: TranslateService
   ){}
 
   ngOnInit(): void {
-    this.bugId = this.router.snapshot.params['id'];
+    this.bugId = this.routerAct.snapshot.params['id'];
     this.getBugById();
     this.getReplies();
     this.authService.isAuthenticatedObs.subscribe(isAuthenticated => {
@@ -64,8 +67,23 @@ export class BugDetailsComponent implements OnInit{
       bug => {
         this.bugDetail = bug;
         this.isPostOwner = this.bugDetail.user.username === localStorage.getItem('LOGGED_IN_USERNAME');
+      },
+      err => {
+        if(err.status == 404){
+          this.router.navigate(['/bugs']);
+        }
       }
     )
+  }
+
+  deleteBug(): void{
+    this.bugsService.deleteById(this.bugId).subscribe(() => {
+    this.toastr.success(
+        this.translate.instant("BUG.DELETED-SUCCESSFULLY")
+      );
+    });
+    
+    this.router.navigate(["/bugs"]);
   }
 
 }

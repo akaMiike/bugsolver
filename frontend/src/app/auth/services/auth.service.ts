@@ -46,11 +46,11 @@ export class AuthService {
     localStorage.clear()
   }
 
-  getAuthToken(){
+  getAuthToken(): string{
     return localStorage.getItem(this.AUTH_TOKEN_KEY)!;
   }
 
-  getRefreshToken(){
+  getRefreshToken(): string{
     return localStorage.getItem(this.REFRESH_TOKEN_KEY)!;
   }
   

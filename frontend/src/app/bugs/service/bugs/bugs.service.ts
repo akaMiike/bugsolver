@@ -27,6 +27,10 @@ export class BugsService {
     })
   }
 
+  deleteById(bugId: number) {
+    return this.http.delete(this.URL + "/" + bugId);
+  }
+
   getById(id: number): Observable<Bug>{
     return this.http.get<Bug>(this.URL + "/" + id)
   }

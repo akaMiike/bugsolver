@@ -55,6 +55,11 @@
             "SUBMIT":"Enviar",
             "SEND-ANSWER-TITLE": "Enviar nova resposta"
         },
+        "BUTTON-DELETE-MODAL": "Deletar",
+        "BUTTON-CLOSE-MODAL": "Fechar",
+        "DELETE-DESCRIPTION": "Tem certeza que deseja excluir o post?",
+        "DELETE-TITLE": "Confirmar exclusão",
+        "DELETED-SUCCESSFULLY": "Excluido com sucesso.",
         "CREATE-NEW-BUTTON":"Criar Novo",
         "CREATED-BY-TEXT":"Criado por",
         "CREATED-AT-TEXT":"Criado em",

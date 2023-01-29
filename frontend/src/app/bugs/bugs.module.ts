@@ -7,11 +7,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { BugDetailsComponent } from './components/bug-details/bug-details.component';
+import { NewBugComponent } from './components/new-bug/new-bug.component';
 
 @NgModule({
   declarations: [
     BugsComponent,
-    BugDetailsComponent
+    BugDetailsComponent,
+    NewBugComponent
   ],
   imports: [
     NgxPaginationModule,

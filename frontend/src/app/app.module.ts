@@ -11,6 +11,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { HttpErrorsService } from './shared/http-errors.service';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { HeadersService } from './shared/interceptors/headers.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -40,6 +41,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpErrorsService,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HeadersService,
       multi: true
     }
   ],

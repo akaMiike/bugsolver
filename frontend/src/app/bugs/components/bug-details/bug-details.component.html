@@ -6,8 +6,10 @@
             <span class="small">{{bugDetail.user.username}}</span>
             <span class="text-muted small ml-4">{{"BUG.CREATED-AT-TEXT" | translate}}: </span>
             <span class="small">{{bugDetail.created_at | date: "dd/MM/yyyy HH:mm"}}</span>
-
-            <button *ngIf="isPostOwner" type="button" class="btn btn-danger btn-sm float-right ml-2" data-toggle="tooltip" data-placement="top" title="{{'BUG.REMOVE' | translate}}"><i class="fa fa-trash"></i></button>
+            
+            <span data-toggle="tooltip" data-placement="top" title="{{'BUG.REMOVE' | translate}}">
+                <button data-toggle="modal" data-target="#deleteModal" *ngIf="isPostOwner" type="button" class="btn btn-danger btn-sm float-right ml-2"><i class="fa fa-trash"></i></button>
+            </span>
             <button *ngIf="isPostOwner" type="button" class="btn btn-info btn-sm float-right" data-toggle="tooltip" data-placement="top" title="{{'BUG.EDIT' | translate}}"><i class="fa fa-pencil "></i></button>
         </div>
         <hr>
@@ -69,3 +71,25 @@
         </form>
     </div>
 </div>    
+
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{'BUG.DELETE-TITLE' | translate}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <p>{{'BUG.DELETE-DESCRIPTION' | translate}}</p>
+        </div>
+        <div class="modal-footer">
+            <button (click)="deleteBug()" type="button" class="btn btn-danger" data-dismiss="modal">{{'BUG.BUTTON-DELETE-MODAL' | translate}}</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'BUG.BUTTON-CLOSE-MODAL' | translate}}</button>
+        </div>
+      </div>
+    </div>
+</div>
