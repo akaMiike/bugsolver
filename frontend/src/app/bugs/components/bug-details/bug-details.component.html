@@ -6,6 +6,9 @@
             <span class="small">{{bugDetail.user.username}}</span>
             <span class="text-muted small ml-4">{{"BUG.CREATED-AT-TEXT" | translate}}: </span>
             <span class="small">{{bugDetail.created_at | date: "dd/MM/yyyy HH:mm"}}</span>
+
+            <button *ngIf="isPostOwner" type="button" class="btn btn-danger btn-sm float-right ml-2" data-toggle="tooltip" data-placement="top" title="{{'BUG.REMOVE' | translate}}"><i class="fa fa-trash"></i></button>
+            <button *ngIf="isPostOwner" type="button" class="btn btn-info btn-sm float-right" data-toggle="tooltip" data-placement="top" title="{{'BUG.EDIT' | translate}}"><i class="fa fa-pencil "></i></button>
         </div>
         <hr>
         <p>{{bugDetail.description}}</p>
@@ -21,5 +24,48 @@
               <code>{{bugDetail.code}}</code>
             </div>
         </div>
+
+        <p class="lead mt-4">{{'BUG.ANSWERS.TITLE' | translate}}</p>
+        <div class="card mb-2" [ngClass]="{'border-success': reply.best_answer}" *ngFor="let reply of pageReply.content | paginate : {
+            currentPage: pageReply.page,
+            itemsPerPage: pageReply.size,
+            totalItems: pageReply.totalElements
+        }">
+            <div class="ml-2 mt-1 mb-1 mr-1">
+                <button *ngIf="isPostOwner" type="button" class="btn btn-success btn-sm float-right" data-toggle="tooltip" data-placement="top" title="{{'BUG.ANSWERS.SELECT-BEST-ANSWER' | translate}}"><i class="fa fa-check "></i></button>
+                <span class="text-muted small">{{"BUG.ANSWERS.ANSWERED-BY-TEXT" | translate}}: </span>
+                <span class="small">{{reply.user.username}}</span>
+                <span class="text-muted small ml-4">{{"BUG.ANSWERS.ANSWERED-AT-TEXT" | translate}}: </span>
+                <span class="small">{{reply.created_at | date: "dd/MM/yyyy HH:mm"}}</span>
+            </div>
+            <hr style="margin:0px; padding:0px;">
+            <div class="card-body">
+                {{reply.description}}
+            </div>
+        </div>
+        <div *ngIf="pageReply.totalElements == 0" class="justify-content-center m-4">
+            <p class="text-center lead text-muted">{{'BUG.ANSWERS.NO-ANSWER-FOUND' | translate}}</p>
+        </div>
+
+        <div class="d-flex justify-content-center mt-4 mr-4">
+            <pagination-controls class="pagination-control text-center" 
+            previousLabel = "{{'PAGINATION.PREVIOUS-LABEL' | translate}}"
+            nextLabel = "{{'PAGINATION.NEXT-LABEL' | translate}}"
+            (pageChange)="getRepliesByPage($event)"></pagination-controls>
+        </div>
+    </div>
+
+    <div *ngIf="isAuthenticated" class="container p-3 mt-2" style="background-color: white;">
+        <p class="text-center lead">{{'BUG.ANSWERS.SEND-ANSWER-TITLE' | translate}}</p>
+        <form [formGroup]="replyForm">
+            <div class="form-group">
+                <textarea id="description" class="form-control" formControlName="description" oninput="this.style.height = ''; this.style.height = this.scrollHeight +'px'"></textarea>
+            </div>
+            <div class="align-items-center text-center">
+                <button class="btn btn-primary" type="submit">
+                    <span>{{'BUG.ANSWERS.SUBMIT' | translate}}</span>
+                </button>
+            </div>
+        </form>
     </div>
 </div>    

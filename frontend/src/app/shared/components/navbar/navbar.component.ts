@@ -25,6 +25,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.selectLanguage(environment.defaultLanguage);
+    this.authService.refreshAuthenticatedState();
     this.authService.isAuthenticatedObs.subscribe(isAuthenticated => {
       this.isLoggedIn = isAuthenticated
       if(isAuthenticated){
@@ -51,6 +52,10 @@ export class NavbarComponent implements OnInit {
     this.toastr.success(
       this.translate.instant("LOGIN.LOGOUT_SUCESSFULLY")
     )
+  }
+
+  getIsLoggedIn(){
+    
   }
 
 }

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Page } from 'src/app/shared/models/page.model';
 import { environment } from 'src/environments/environment.prod';
-import { Bug } from '../models/bug.model';
+import { Bug } from '../../models/bug.model';
 
 @Injectable({
   providedIn: 'root'

@@ -15,7 +15,7 @@
     color: #17B169 !important;
 }
 ::ng-deep .ngx-pagination .disabled{
-    color: gray !important;
+    color: darkgray !important;
 }
 
 .btn-submit{

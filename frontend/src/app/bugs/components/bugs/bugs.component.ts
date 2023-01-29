@@ -5,8 +5,8 @@ import { IDropdownSettings} from 'ng-multiselect-dropdown';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { Page } from 'src/app/shared/models/page.model';
 import { CategoryService } from 'src/app/shared/service/category.service';
-import { Bug } from '../models/bug.model';
-import { BugsService } from '../service/bugs.service';
+import { Bug } from '../../models/bug.model';
+import { BugsService } from '../../service/bugs/bugs.service';
 
 @Component({
   selector: 'app-bugs',
@@ -47,13 +47,14 @@ export class BugsComponent implements OnInit {
     
   ngOnInit() {
     this.getCategories();
-    this.getBugs(new Page<Bug>());
+    this.getBugs(this.pageConfig);
     this.authService.isAuthenticatedObs.subscribe(isAuthenticated => {
       this.isAuthenticated = isAuthenticated
     })
   }
 
   getBugs(params: Page<Bug>){
+    this.pageConfig.size = 9;
     this.bugService.getAll(params).subscribe( (page) => {
       this.pageConfig.totalElements = page.totalElements;
       this.pageConfig.content = page.content

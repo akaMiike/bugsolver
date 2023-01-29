@@ -46,9 +46,21 @@
     },
     
     "BUG":{
+        "ANSWERS":{
+            "NO-ANSWER-FOUND": "Nenhuma resposta encontrada.",
+            "SELECT-BEST-ANSWER": "Selecionar como melhor resposta",
+            "TITLE": "Respostas",
+            "ANSWERED-BY-TEXT":"Respondido por",
+            "ANSWERED-AT-TEXT":"Respondido em",
+            "SUBMIT":"Enviar",
+            "SEND-ANSWER-TITLE": "Enviar nova resposta"
+        },
         "CREATE-NEW-BUTTON":"Criar Novo",
         "CREATED-BY-TEXT":"Criado por",
         "CREATED-AT-TEXT":"Criado em",
-        "SEE-CODE":"Ver código"
+        "SEE-CODE":"Ver código",
+        "NO-BUG-FOUND": "Nenhum bug encontrado.",
+        "EDIT": "Editar",
+        "REMOVE": "Excluir"
     }
 }

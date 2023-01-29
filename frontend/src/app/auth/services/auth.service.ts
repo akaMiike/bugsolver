@@ -63,6 +63,10 @@ export class AuthService {
     return !!this.getAuthToken() && !this.isRefreshTokenExpired()
   }
 
+  refreshAuthenticatedState(){
+    this._isAuthenticatedSubject.next(this.isAuthenticated());
+  }
+
   saveTokens(tokens: Tokens, username: string): void {
 
     localStorage.setItem(this.AUTH_TOKEN_KEY, tokens.authToken)

@@ -1,0 +1,20 @@
+::ng-deep .ngx-pagination li{
+    margin-right: 5px !important;
+}
+
+::ng-deep .ngx-pagination li.current{
+    background-color: #17B169 !important;
+    border-radius: 50px;
+}
+::ng-deep .ngx-pagination li a{
+    border-radius: 50px;
+    outline:none !important;
+    color: black !important;
+}
+::ng-deep .ngx-pagination a:hover, .ngx-pagination button{
+    background-color: white !important;
+    color: #17B169 !important;
+}
+::ng-deep .ngx-pagination .disabled{
+    color: darkgray !important;
+}
