@@ -34,10 +34,10 @@ public class Reply {
     private String code;
 
     @JsonProperty(access = READ_ONLY)
-    private ZonedDateTime created_at = ZonedDateTime.now();
+    private ZonedDateTime createdAt = ZonedDateTime.now();
 
     @JsonProperty(access = READ_ONLY)
-    private Boolean best_answer = false;
+    private Boolean bestAnswer = false;
 
     @ManyToOne
     @JoinColumn(name="user_id")

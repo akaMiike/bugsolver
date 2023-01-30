@@ -5,9 +5,11 @@ import com.bugsolver.entity.Category;
 import com.bugsolver.exception.bug.BugNotFoundException;
 import com.bugsolver.exception.category.CategoryNotFoundException;
 import com.bugsolver.repository.BugRepository;
+import com.bugsolver.util.BugSearchCriteria;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +22,7 @@ public class BugService {
 
     private final BugRepository bugRepository;
     private final CategoryService categoryService;
+    private final BugSpecification bugSpecification;
 
     public Bug save(Bug bug){
         Set<Category> categories = bug.getCategories().stream()
@@ -66,26 +69,12 @@ public class BugService {
         return bugRepository.findAll();
     }
 
-    public Page<Bug> findAll(Pageable pageable){
-        return bugRepository.findAll(pageable);
+    public Page<Bug> findAll(Pageable pageable, BugSearchCriteria searchCriteria){
+        return bugRepository.findAll(bugSpecification.getBugSpecification(searchCriteria), pageable);
     }
 
     public Page<Bug> findBugsByUserId(Pageable pageable, Long id){
         return bugRepository.findBugsByUserId(pageable, id);
     }
 
-    public Page<Bug> findBugsByCategoriesOrTitle(Pageable pageable, Set<String> categories, String title){
-        if(categories.isEmpty() && title.isBlank()){
-            return bugRepository.findAll(pageable);
-        }
-        else if(!categories.isEmpty() && title.isBlank()){
-            return bugRepository.findBugsByCategories(pageable,categories);
-        }
-        else if(categories.isEmpty() && !title.isBlank()){
-            return bugRepository.findBugByTitleContainingIgnoreCase(pageable, title);
-        }
-        else{
-            return bugRepository.findBugsByCategoriesAndTitle(pageable, categories, title);
-        }
-    }
 }

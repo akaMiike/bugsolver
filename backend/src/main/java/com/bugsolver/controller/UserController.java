@@ -39,13 +39,4 @@ public class UserController {
         return ResponseEntity.ok(userService.findById(id));
     }
 
-    @GetMapping("/bugs")
-    public ResponseEntity<Page<Bug>> getAllBugsFromUser(
-            Pageable pageable,
-            Principal principal){
-
-        String username = principal.getName();
-        User userLogged = userService.findByUsername(username);
-        return ResponseEntity.ok(bugService.findBugsByUserId(pageable, userLogged.getId()));
-    }
 }

@@ -4,6 +4,7 @@ import com.bugsolver.entity.Bug;
 import com.bugsolver.entity.User;
 import com.bugsolver.service.BugService;
 import com.bugsolver.service.UserService;
+import com.bugsolver.util.BugSearchCriteria;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -28,8 +29,32 @@ public class BugController {
                                                          @RequestParam(required = false, defaultValue = "") Set<String> categories,
                                                          @RequestParam(required = false, defaultValue = "") String title
     ){
+        BugSearchCriteria searchCriteria = BugSearchCriteria.builder()
+                .title(title)
+                .categories(categories)
+                .build();
 
-        return ResponseEntity.ok(bugService.findBugsByCategoriesOrTitle(pageable, categories, title));
+        return ResponseEntity.ok(bugService.findAll(pageable, searchCriteria));
+    }
+
+    @GetMapping("/user")
+    public ResponseEntity<Page<Bug>> getAllBugsFromUserPaginated(
+            Principal principal,
+            Pageable pageable,
+            @RequestParam(required = false, defaultValue = "") Set<String> categories,
+            @RequestParam(required = false, defaultValue = "") String title
+        ){
+
+        String username = principal.getName();
+        User userLogged = userService.findByUsername(username);
+
+        BugSearchCriteria searchCriteria = BugSearchCriteria.builder()
+                .userId(userLogged.getId())
+                .title(title)
+                .categories(categories)
+                .build();
+
+        return ResponseEntity.ok(bugService.findAll(pageable, searchCriteria));
     }
 
     @GetMapping("/{id}")

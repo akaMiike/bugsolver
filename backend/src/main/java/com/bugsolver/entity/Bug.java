@@ -40,7 +40,7 @@ public class Bug {
     private String description;
 
     @JsonProperty(access = READ_ONLY)
-    private ZonedDateTime created_at = ZonedDateTime.now();
+    private ZonedDateTime createdAt = ZonedDateTime.now();
 
     @ManyToOne
     @JoinColumn(name="user_id")

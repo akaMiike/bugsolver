@@ -58,7 +58,7 @@ public class ReplyController {
         User bugAuthor = userService.findBugAuthorByReplyId(id);
 
         if(bugAuthor.getUsername().equals(username)){
-            reply.setBest_answer(bestAnswer);
+            reply.setBestAnswer(bestAnswer);
             replyService.update(id, reply);
         }
         else{
