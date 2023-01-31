@@ -82,8 +82,13 @@ public class BugController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Bug> updateBugById(@PathVariable("id") Long id,
+    public ResponseEntity<Bug> updateBugById(Principal principal,
+                                             @PathVariable("id") Long id,
                                              @Valid @RequestBody Bug bugUpdated){
+        String username = principal.getName();
+        User userLoggedIn = userService.findByUsername(username);
+
+        bugUpdated.setUser(userLoggedIn);
         Bug updatedBug = bugService.update(id, bugUpdated);
         return ResponseEntity.ok(updatedBug);
 
