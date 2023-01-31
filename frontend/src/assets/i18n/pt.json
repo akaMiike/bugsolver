@@ -49,7 +49,8 @@
         "BEST-ANSWER": {
             "TITLE": "Confirmar escolha de melhor resposta",
             "DESCRIPTION":"Deseja escolher essa resposta como a melhor resposta?",
-            "OBS":"Obs: Caso já exista uma outra resposta escolhida, ela será substituida."
+            "OBS":"Obs: Caso já exista uma outra resposta escolhida, ela será substituida.",
+            "UPDATED-SUCCESSFULLY": "Resposta atualizada com sucesso."
         },
 
         "UPDATE":{

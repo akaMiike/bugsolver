@@ -5,6 +5,6 @@ export interface Reply{
     description: string,
     code: string,
     createdAt: Date,
-    best_answer: boolean,
+    bestAnswer: boolean,
     user: User
 }

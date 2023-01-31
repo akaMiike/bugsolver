@@ -14,14 +14,4 @@ export class ReplyService {
 
   constructor(private http: HttpClient) { }
 
-  getAllByBugId(bugId: number, paramConfig: Page<Reply>): Observable<Page<Reply>>{
-    return this.http.get<Page<Reply>>(this.URL + "/" + bugId,{
-      params: {
-        page: paramConfig.page-1,
-        size: paramConfig.size,
-        sort: paramConfig.sort,
-        ...(paramConfig.filters ?? {})
-      }}
-    )
-  }
 }

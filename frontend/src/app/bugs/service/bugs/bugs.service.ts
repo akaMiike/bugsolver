@@ -1,9 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Page } from 'src/app/shared/models/page.model';
 import { environment } from 'src/environments/environment.prod';
 import { Bug } from '../../models/bug.model';
+import { Reply } from '../../models/reply.model';
 
 @Injectable({
   providedIn: 'root'
@@ -47,8 +48,19 @@ export class BugsService {
     })
   }
 
+  getAllRepliesByBugId(bugId: number, paramConfig: Page<Reply>): Observable<Page<Reply>>{
+    return this.http.get<Page<Reply>>(this.URL + "/" + bugId + "/reply",{
+      params: {
+        page: paramConfig.page-1,
+        size: paramConfig.size,
+        sort: ["bestAnswer,DESC", paramConfig.sort],
+        ...(paramConfig.filters ?? {})
+      }}
+    )
+  }
+
   updateBestAnswer(idBug: number, idReply: number){
-    return this.http.put<void>(this.URL + "/" + idBug + "/reply/" + idReply, {});
+    return this.http.put<void>(this.URL + "/" + idBug + "/reply/" + idReply, null);
   }
 
   updateBug(id: number, title: string, code:string, description: string, categories: any[]): Observable<Bug>{

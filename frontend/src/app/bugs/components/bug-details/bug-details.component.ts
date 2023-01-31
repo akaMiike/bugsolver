@@ -51,7 +51,8 @@ export class BugDetailsComponent implements OnInit{
 
   getReplies(){
     this.pageReply.size = 5;
-    this.replyService.getAllByBugId(this.bugId, this.pageReply).subscribe((page) => {
+    this.pageReply.sort = "createdAt,DESC"
+    this.bugsService.getAllRepliesByBugId(this.bugId, this.pageReply).subscribe((page) => {
       this.pageReply.content = page.content;
       this.pageReply.totalElements = page.totalElements;
     });
@@ -88,12 +89,16 @@ export class BugDetailsComponent implements OnInit{
   }
 
   setBestAnswer(){
-    console.log("setou best answer");
-    //this.bugsService.updateBestAnswer(this.bugId, this.bestAnswerId);
+    this.bugsService.updateBestAnswer(this.bugId, this.bestAnswerId).subscribe( () => 
+    {
+      this.toastr.success(
+        this.translate.instant("BUG.BEST-ANSWER.UPDATED-SUCCESSFULLY")
+      )
+      this.getRepliesByPage(1);
+    })
   }
 
   setBestAnswerId(replyId: number){
-    console.log("setou best answer id");
     this.bestAnswerId = replyId;
   }
 

@@ -30,7 +30,7 @@
         </div>
 
         <p class="lead mt-4">{{'BUG.ANSWERS.TITLE' | translate}}</p>
-        <div class="card mb-2" [ngClass]="{'border-success': reply.best_answer}" *ngFor="let reply of pageReply.content | paginate : {
+        <div class="card mb-2" [ngClass]="{'border-success': reply.bestAnswer}" *ngFor="let reply of pageReply.content | paginate : {
             currentPage: pageReply.page,
             itemsPerPage: pageReply.size,
             totalItems: pageReply.totalElements
@@ -56,7 +56,7 @@
         </div>
 
         <div class="d-flex justify-content-center mt-4 mr-4">
-            <pagination-controls class="pagination-control text-center" 
+            <pagination-controls class="pagination-control text-center text-dark" 
             previousLabel = "{{'PAGINATION.PREVIOUS-LABEL' | translate}}"
             nextLabel = "{{'PAGINATION.NEXT-LABEL' | translate}}"
             (pageChange)="getRepliesByPage($event)"></pagination-controls>
