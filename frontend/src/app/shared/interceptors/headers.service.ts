@@ -21,8 +21,13 @@ export class HeadersService implements HttpInterceptor {
   }
 
   configure(headers: HttpHeaders){
-    return headers
+    if(this.getBearerToken() != null){
+      return headers
       .set("Authorization", `Bearer ${this.getBearerToken()}`)
+      .set("Accept-Language", this.getCurrentLanguage());
+    }
+    
+    return headers
       .set("Accept-Language", this.getCurrentLanguage());
   }
 

@@ -5,7 +5,7 @@ export interface Bug{
     id?: number,
     title: string,
     code: string,
-    created_at: Date,
+    createdAt: Date,
     description: string,
     categories: Category[],
     user: User

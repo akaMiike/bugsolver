@@ -4,7 +4,7 @@ export interface Reply{
     id?: number,
     description: string,
     code: string,
-    created_at: Date,
+    createdAt: Date,
     best_answer: boolean,
     user: User
 }
