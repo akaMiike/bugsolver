@@ -27,6 +27,35 @@ export class BugsService {
     })
   }
 
+  getAllUserBugs(paramConfig: Page<Bug>){
+    return this.http.get<Page<Bug>>(this.URL + "/user", {
+      params: {
+        page: paramConfig.page-1,
+        size: paramConfig.size,
+        sort: paramConfig.sort,
+        ...(paramConfig.filters ?? {})
+      }
+    })
+  }
+
+  createBug(title: string, code:string, description: string, categories: any[]): Observable<Bug>{
+    return this.http.post<Bug>(this.URL, {
+      title: title,
+      code: code,
+      description: description,
+      categories: categories
+    })
+  }
+
+  updateBug(id: number, title: string, code:string, description: string, categories: any[]): Observable<Bug>{
+    return this.http.put<Bug>(this.URL + "/" + id, {
+      title: title,
+      code: code,
+      description: description,
+      categories: categories
+    })
+  }
+
   deleteById(bugId: number) {
     return this.http.delete(this.URL + "/" + bugId);
   }
