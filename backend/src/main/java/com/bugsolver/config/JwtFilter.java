@@ -29,25 +29,29 @@ public class JwtFilter extends OncePerRequestFilter {
         var token = getTokenFromHeader(request);
 
         if(token.isPresent()){
-            authenticate(token.get());
+            if(jwtProvider.isValid(token.get())){
+                authenticate(token.get());
+            }
+            else{
+                response.sendError(401);
+                return;
+            }
         }
 
         filterChain.doFilter(request, response);
     }
 
     public void authenticate(String token){
-        if(jwtProvider.isValid(token)){
-            var subject = jwtProvider.getSubject(token);
-            var roles = jwtProvider.getRole(token);
+        var subject = jwtProvider.getSubject(token);
+        var roles = jwtProvider.getRole(token);
 
-            SecurityContextHolder.getContext().setAuthentication(
-                    new UsernamePasswordAuthenticationToken(
-                            subject,
-                            null,
-                            List.of(new SimpleGrantedAuthority(roles))
-                    )
-            );
-        }
+        SecurityContextHolder.getContext().setAuthentication(
+                new UsernamePasswordAuthenticationToken(
+                        subject,
+                        null,
+                        List.of(new SimpleGrantedAuthority(roles))
+                )
+        );
     }
 
     private Optional<String> getTokenFromHeader(HttpServletRequest request){
