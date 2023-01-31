@@ -40,6 +40,7 @@ public class Bug {
     private String description;
 
     @JsonProperty(access = READ_ONLY)
+    @Column(name="created_at")
     private ZonedDateTime createdAt = ZonedDateTime.now();
 
     @ManyToOne

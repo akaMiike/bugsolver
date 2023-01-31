@@ -34,9 +34,11 @@ public class Reply {
     private String code;
 
     @JsonProperty(access = READ_ONLY)
+    @Column(name="created_at")
     private ZonedDateTime createdAt = ZonedDateTime.now();
 
     @JsonProperty(access = READ_ONLY)
+    @Column(name="best_answer")
     private Boolean bestAnswer = false;
 
     @ManyToOne

@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -35,6 +36,19 @@ public class ReplyService {
 
         reply.setId(id);
         return replyRepository.save(reply);
+    }
+
+    @Transactional
+    public void updateBestAnswer(Long bugId, Long replyId){
+        if(!bugService.existsById(bugId)){
+            throw new BugNotFoundException();
+        }
+
+        replyRepository.removeActualBestAnswer(bugId);
+
+        Reply reply = findById(replyId);
+        reply.setBestAnswer(true);
+        replyRepository.save(reply);
     }
 
     public Reply findById(Long id){

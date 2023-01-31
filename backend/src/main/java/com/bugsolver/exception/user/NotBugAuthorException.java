@@ -8,7 +8,7 @@ public class NotBugAuthorException extends BugSolverException {
     public static final String MESSAGE_KEY = "user.not-bug-author";
 
     public NotBugAuthorException(){
-        super(HttpStatus.UNAUTHORIZED, MESSAGE_KEY);
+        super(HttpStatus.FORBIDDEN, MESSAGE_KEY);
     }
 
 }

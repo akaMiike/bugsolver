@@ -1,8 +1,11 @@
 package com.bugsolver.controller;
 
 import com.bugsolver.entity.Bug;
+import com.bugsolver.entity.Reply;
 import com.bugsolver.entity.User;
+import com.bugsolver.exception.user.NotBugAuthorException;
 import com.bugsolver.service.BugService;
+import com.bugsolver.service.ReplyService;
 import com.bugsolver.service.UserService;
 import com.bugsolver.util.BugSearchCriteria;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +24,7 @@ import java.util.Set;
 @RequestMapping("/bug")
 public class BugController {
 
+    private final ReplyService replyService;
     private final BugService bugService;
     private final UserService userService;
 
@@ -92,5 +96,44 @@ public class BugController {
         Bug updatedBug = bugService.update(id, bugUpdated);
         return ResponseEntity.ok(updatedBug);
 
+    }
+
+    @GetMapping("/{bugId}/reply")
+    public ResponseEntity<Page<Reply>> getRepliesByBugId(Pageable pageable, @PathVariable("bugId") Long bugId){
+        return ResponseEntity.ok(replyService.findAllByBugId(pageable, bugId));
+    }
+
+    @PostMapping("/{bugId}/reply")
+    public ResponseEntity<Reply> createNewReplyForBug(Principal principal,
+                                                      @Valid @RequestBody Reply newReply,
+                                                      @PathVariable("bugId") Long bugId
+    ){
+        String username = principal.getName();
+        User userLoggedIn = userService.findByUsername(username);
+        Bug bug = bugService.findById(bugId);
+
+        newReply.setUser(userLoggedIn);
+        newReply.setBug(bug);
+
+        Reply replyCreated = replyService.save(newReply);
+        return ResponseEntity.status(HttpStatus.CREATED).body(replyCreated);
+    }
+
+    @PutMapping("/{bugId}/reply/{replyId}")
+    public ResponseEntity<Void> updateBestAnswer(Principal principal,
+                                                 @PathVariable("bugId") Long bugId,
+                                                 @PathVariable("replyId") Long replyId
+    ){
+        String username = principal.getName();
+        User bugAuthor = userService.findBugAuthorByReplyId(replyId);
+
+        if(bugAuthor.getUsername().equals(username)){
+            replyService.updateBestAnswer(bugId, replyId);
+        }
+        else{
+            throw new NotBugAuthorException();
+        }
+
+        return ResponseEntity.ok().build();
     }
 }
