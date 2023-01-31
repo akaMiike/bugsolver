@@ -5,12 +5,14 @@
             <span class="text-muted small">{{"BUG.CREATED-BY-TEXT" | translate}}: </span>
             <span class="small">{{bugDetail.user.username}}</span>
             <span class="text-muted small ml-4">{{"BUG.CREATED-AT-TEXT" | translate}}: </span>
-            <span class="small">{{bugDetail.created_at | date: "dd/MM/yyyy HH:mm"}}</span>
+            <span class="small">{{bugDetail.createdAt | date: "dd/MM/yyyy HH:mm"}}</span>
             
             <span data-toggle="tooltip" data-placement="top" title="{{'BUG.REMOVE' | translate}}">
                 <button data-toggle="modal" data-target="#deleteModal" *ngIf="isPostOwner" type="button" class="btn btn-danger btn-sm float-right ml-2"><i class="fa fa-trash"></i></button>
             </span>
-            <button *ngIf="isPostOwner" type="button" class="btn btn-info btn-sm float-right" data-toggle="tooltip" data-placement="top" title="{{'BUG.EDIT' | translate}}"><i class="fa fa-pencil "></i></button>
+            <button [routerLink]="['/bugs',bugId,'update']" *ngIf="isPostOwner" type="button" class="btn btn-info btn-sm float-right" data-toggle="tooltip" data-placement="top" title="{{'BUG.EDIT' | translate}}">
+                <i class="fa fa-pencil "></i>
+            </button>
         </div>
         <hr>
         <p>{{bugDetail.description}}</p>
@@ -38,7 +40,7 @@
                 <span class="text-muted small">{{"BUG.ANSWERS.ANSWERED-BY-TEXT" | translate}}: </span>
                 <span class="small">{{reply.user.username}}</span>
                 <span class="text-muted small ml-4">{{"BUG.ANSWERS.ANSWERED-AT-TEXT" | translate}}: </span>
-                <span class="small">{{reply.created_at | date: "dd/MM/yyyy HH:mm"}}</span>
+                <span class="small">{{reply.createdAt | date: "dd/MM/yyyy HH:mm"}}</span>
             </div>
             <hr style="margin:0px; padding:0px;">
             <div class="card-body">
@@ -78,7 +80,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">{{'BUG.DELETE-TITLE' | translate}}</h5>
+          <h5 class="modal-title" id="exampleModalLabel">{{'BUG.DELETE-DESCRIPTION' | translate}}</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -87,8 +89,8 @@
             <p>{{'BUG.DELETE-DESCRIPTION' | translate}}</p>
         </div>
         <div class="modal-footer">
-            <button (click)="deleteBug()" type="button" class="btn btn-danger" data-dismiss="modal">{{'BUG.BUTTON-DELETE-MODAL' | translate}}</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'BUG.BUTTON-CLOSE-MODAL' | translate}}</button>
+            <button (click)="deleteBug()" type="button" class="btn btn-danger" data-dismiss="modal">{{'BUG.BUTTON-DELETE-MODAL' | translate}}</button>
         </div>
       </div>
     </div>

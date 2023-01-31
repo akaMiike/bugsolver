@@ -58,7 +58,7 @@ export class BugDetailsComponent implements OnInit{
 
   getRepliesByPage(page: number){
     this.pageReply.page = page;
-    this.pageReply.sort = "created_at,DESC";
+    this.pageReply.sort = "createdAt,DESC";
     this.getReplies();
   }
 

@@ -18,6 +18,7 @@ export class BugsComponent implements OnInit {
   categoriesList : any[] = [];
   selectedCategories: any[] = [];
   isAuthenticated: boolean = false;
+  showBugsFromUser: boolean = false;
 
   form = this.fb.group({
     title: [''],
@@ -46,6 +47,7 @@ export class BugsComponent implements OnInit {
   ) { }
     
   ngOnInit() {
+    this.pageConfig.size = 9;
     this.getCategories();
     this.getBugs(this.pageConfig);
     this.authService.isAuthenticatedObs.subscribe(isAuthenticated => {
@@ -54,19 +56,28 @@ export class BugsComponent implements OnInit {
   }
 
   getBugs(params: Page<Bug>){
-    this.pageConfig.size = 9;
     this.bugService.getAll(params).subscribe( (page) => {
       this.pageConfig.totalElements = page.totalElements;
-      this.pageConfig.content = page.content
+      this.pageConfig.content = page.content;
     })
+  }
+
+  getUserBugs(params: Page<Bug>){
+    this.bugService.getAllUserBugs(params).subscribe( (page) => {
+      this.pageConfig.totalElements = page.totalElements;
+      this.pageConfig.content = page.content;
+    });
   }
 
   getBugsByPage(page: number){
     this.pageConfig.page = page;
-    this.getBugs(this.pageConfig);
+
+    if(this.showBugsFromUser) this.getUserBugs(this.pageConfig);
+    else this.getBugs(this.pageConfig);
   }
 
-  getBugsByFilter(){
+  getBugsByFilter(fromUser: boolean){
+    this.showBugsFromUser = fromUser;
     this.pageConfig.page = 1;
     var categories = this.form.value.categories?.map(category => category.name).filter(c => c).join(',')
     
@@ -74,7 +85,9 @@ export class BugsComponent implements OnInit {
       title :  this.form.value.title,
       categories: categories ?? []
     };
-    this.getBugs(this.pageConfig);
+
+    if(this.showBugsFromUser) this.getUserBugs(this.pageConfig);
+    else this.getBugs(this.pageConfig);
   }
 
   getCategories(){

@@ -28,30 +28,6 @@
     background-color: #1ac474;
 }
 
-.select-tags{
-    background-color: white;
-    border-radius: 4px;
-    color:#6c757d;
-    opacity:1;
-    font-family:'Roboto', sans-serif;
-    font-weight: 300;
-}
-
-::ng-deep .multiselect-dropdown .dropdown-btn .selected-item{
-    font-size:12px !important;
-    background-color: #17B169 !important;
-    border: 1px solid #17B169 !important;
-}
-
-::ng-deep .multiselect-item-checkbox input[type='checkbox'] + div:after,
- ::ng-deep .multiselect-item-checkbox input[type='checkbox']:checked + div:before,
- ::ng-deep .multiselect-item-checkbox input[type='checkbox']:checked + div:after   {
-    background-color: #17B169 !important;
-}
-
-::ng-deep .multiselect-item-checkbox input[type='checkbox'] + div:before {
-    border: 2px solid #17B169 !important;
-}
 
 
 

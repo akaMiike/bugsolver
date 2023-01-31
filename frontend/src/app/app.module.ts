@@ -8,7 +8,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {HttpClient, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 import { ToastrModule } from 'ngx-toastr';
-import { HttpErrorsService } from './shared/http-errors.service';
+import { HttpErrorsService } from './shared/interceptors/http-errors.service';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { HeadersService } from './shared/interceptors/headers.service';

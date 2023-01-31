@@ -9,12 +9,12 @@
       [settings]="categoriesDropdownSettings"
       [data]="categoriesList"
       ></ng-multiselect-dropdown>
-      <button class="btn my-2 my-sm-0 btn-submit" type="submit" (click)="getBugsByFilter()">
+      <button class="btn my-2 my-sm-0 btn-submit" type="submit" (click)="getBugsByFilter(false)">
         <span>{{'BUG.SEARCH.BUTTON' | translate}}</span>
         <i class="fa-solid fa-xs fa-search ml-1" ></i>
       </button>
       
-      <button class="btn btn-primary ml-auto" *ngIf="isAuthenticated" type="button">
+      <button class="btn btn-primary ml-auto" *ngIf="isAuthenticated" type="button" (click)="getBugsByFilter(true)">
         <span>{{"BUG.SEE-OWN-BUGS" | translate}}</span>
         <i class="fa-solid fa-bug fa-xs ml-1" ></i>
       </button>
@@ -45,7 +45,7 @@
             </span>
           </div>
           <div class="card-footer text-muted" style="padding: 3px !important;">
-            <small>{{"BUG.CREATED-AT-TEXT" | translate}}: {{bug.created_at | date: "dd/MM/yyyy HH:mm"}}</small> 
+            <small>{{"BUG.CREATED-AT-TEXT" | translate}}: {{bug.createdAt | date: "dd/MM/yyyy HH:mm"}}</small> 
           </div>
         </div>
       </div>

@@ -46,6 +46,21 @@
     },
     
     "BUG":{
+        "UPDATE":{
+            "BUTTON-UPDATE": "Salvar",
+            "UPDATE":"Atualizar",
+            "UPDATED-MESSAGE":"Atualizado com sucesso."
+        },
+
+        "CREATE":{
+            "NEW": "Novo Bug",
+            "BUTTON-NEW": "Criar"
+        },
+        
+        "SEARCH": {
+            "BUTTON": "Buscar"
+        },
+
         "ANSWERS":{
             "NO-ANSWER-FOUND": "Nenhuma resposta encontrada.",
             "SELECT-BEST-ANSWER": "Selecionar como melhor resposta",
@@ -55,17 +70,24 @@
             "SUBMIT":"Enviar",
             "SEND-ANSWER-TITLE": "Enviar nova resposta"
         },
+        "TITLE-FIELD": "Título",
+        "DESCRIPTION-FIELD":"Descreva seu bug",
         "BUTTON-DELETE-MODAL": "Deletar",
         "BUTTON-CLOSE-MODAL": "Fechar",
         "DELETE-DESCRIPTION": "Tem certeza que deseja excluir o post?",
-        "DELETE-TITLE": "Confirmar exclusão",
+        "DELETE-CONFIRMATION": "Confirmar exclusão",
         "DELETED-SUCCESSFULLY": "Excluido com sucesso.",
         "CREATE-NEW-BUTTON":"Criar Novo",
         "CREATED-BY-TEXT":"Criado por",
         "CREATED-AT-TEXT":"Criado em",
         "SEE-CODE":"Ver código",
+        "SEE-OWN-BUGS":"Meus bugs",
         "NO-BUG-FOUND": "Nenhum bug encontrado.",
         "EDIT": "Editar",
         "REMOVE": "Excluir"
+    },
+
+    "CATEGORY":{
+        "DESCRIPTION-FIELD":"Selecione as categorias"
     }
 }
