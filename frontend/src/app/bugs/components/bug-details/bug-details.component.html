@@ -36,7 +36,11 @@
             totalItems: pageReply.totalElements
         }">
             <div class="ml-2 mt-1 mb-1 mr-1">
-                <button *ngIf="isPostOwner" type="button" class="btn btn-success btn-sm float-right" data-toggle="tooltip" data-placement="top" title="{{'BUG.ANSWERS.SELECT-BEST-ANSWER' | translate}}"><i class="fa fa-check "></i></button>
+                <span data-toggle="tooltip" data-placement="top" title="{{'BUG.ANSWERS.SELECT-BEST-ANSWER' | translate}}">
+                    <button (click)="setBestAnswerId(reply.id!!)" *ngIf="isPostOwner" type="button" class="btn btn-success btn-sm float-right" data-toggle="modal" data-target="#bestAnswerModal">
+                        <i class="fa fa-check "></i>
+                    </button>
+                </span>
                 <span class="text-muted small">{{"BUG.ANSWERS.ANSWERED-BY-TEXT" | translate}}: </span>
                 <span class="small">{{reply.user.username}}</span>
                 <span class="text-muted small ml-4">{{"BUG.ANSWERS.ANSWERED-AT-TEXT" | translate}}: </span>
@@ -91,6 +95,28 @@
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'BUG.BUTTON-CLOSE-MODAL' | translate}}</button>
             <button (click)="deleteBug()" type="button" class="btn btn-danger" data-dismiss="modal">{{'BUG.BUTTON-DELETE-MODAL' | translate}}</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- Best answer confirmation modal -->
+<div class="modal fade" id="bestAnswerModal" tabindex="-1" role="dialog" aria-labelledby="bestAnswerModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{'BUG.BEST-ANSWER.TITLE' | translate}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <p>{{'BUG.BEST-ANSWER.DESCRIPTION' | translate}}</p>
+            <p>{{'BUG.BEST-ANSWER.OBS' | translate}}</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'BUG.BUTTON-CLOSE-MODAL' | translate}}</button>
+            <button (click)="setBestAnswer()" type="button" class="btn btn-success" data-dismiss="modal">{{'BUG.BUTTON-CONFIRM-MODAL' | translate}}</button>
         </div>
       </div>
     </div>

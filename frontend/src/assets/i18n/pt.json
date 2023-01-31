@@ -46,6 +46,12 @@
     },
     
     "BUG":{
+        "BEST-ANSWER": {
+            "TITLE": "Confirmar escolha de melhor resposta",
+            "DESCRIPTION":"Deseja escolher essa resposta como a melhor resposta?",
+            "OBS":"Obs: Caso já exista uma outra resposta escolhida, ela será substituida."
+        },
+
         "UPDATE":{
             "BUTTON-UPDATE": "Salvar",
             "UPDATE":"Atualizar",
@@ -72,8 +78,10 @@
         },
         "TITLE-FIELD": "Título",
         "DESCRIPTION-FIELD":"Descreva seu bug",
+        "BUTTON-CONFIRM-MODAL": "Confirmar",
         "BUTTON-DELETE-MODAL": "Deletar",
         "BUTTON-CLOSE-MODAL": "Fechar",
+        "DELETE-TITLE": "Confirmar exclusão",
         "DELETE-DESCRIPTION": "Tem certeza que deseja excluir o post?",
         "DELETE-CONFIRMATION": "Confirmar exclusão",
         "DELETED-SUCCESSFULLY": "Excluido com sucesso.",

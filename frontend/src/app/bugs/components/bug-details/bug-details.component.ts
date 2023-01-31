@@ -17,8 +17,9 @@ import { ReplyService } from '../../service/reply/reply.service';
 })
 export class BugDetailsComponent implements OnInit{
 
-  bugDetail = <Bug>{};
+  bestAnswerId: number = 0;
   bugId: number = 0;
+  bugDetail = <Bug>{};
   isPostOwner: boolean = false;
   isAuthenticated: boolean = false;
 
@@ -84,6 +85,16 @@ export class BugDetailsComponent implements OnInit{
     });
     
     this.router.navigate(["/bugs"]);
+  }
+
+  setBestAnswer(){
+    console.log("setou best answer");
+    //this.bugsService.updateBestAnswer(this.bugId, this.bestAnswerId);
+  }
+
+  setBestAnswerId(replyId: number){
+    console.log("setou best answer id");
+    this.bestAnswerId = replyId;
   }
 
 }

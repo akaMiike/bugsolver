@@ -47,6 +47,10 @@ export class BugsService {
     })
   }
 
+  updateBestAnswer(idBug: number, idReply: number){
+    return this.http.put<void>(this.URL + "/" + idBug + "/reply/" + idReply, {});
+  }
+
   updateBug(id: number, title: string, code:string, description: string, categories: any[]): Observable<Bug>{
     return this.http.put<Bug>(this.URL + "/" + id, {
       title: title,
