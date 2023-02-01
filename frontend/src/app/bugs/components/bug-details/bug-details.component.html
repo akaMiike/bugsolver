@@ -7,27 +7,17 @@
             <span class="text-muted small ml-4">{{"BUG.CREATED-AT-TEXT" | translate}}: </span>
             <span class="small">{{bugDetail.createdAt | date: "dd/MM/yyyy HH:mm"}}</span>
             
-            <span data-toggle="tooltip" data-placement="top" title="{{'BUG.REMOVE' | translate}}">
-                <button data-toggle="modal" data-target="#deleteModal" *ngIf="isPostOwner" type="button" class="btn btn-danger btn-sm float-right ml-2"><i class="fa fa-trash"></i></button>
+            <span data-toggle="modal" data-target="#deleteModal">
+                <button onmouseenter="$(this).tooltip('show')" data-toggle="tooltip" data-placement="top" title="{{'BUG.REMOVE' | translate}}" *ngIf="isPostOwner" type="button" class="btn btn-danger btn-sm float-right ml-2">
+                    <i class="fa fa-trash" ></i>
+                </button>
             </span>
-            <button [routerLink]="['/bugs',bugId,'update']" *ngIf="isPostOwner" type="button" class="btn btn-info btn-sm float-right" data-toggle="tooltip" data-placement="top" title="{{'BUG.EDIT' | translate}}">
+            <button [routerLink]="['/bugs',bugId,'update']" *ngIf="isPostOwner" type="button" class="btn btn-info btn-sm float-right" onmouseenter="$(this).tooltip('show')" data-toggle="tooltip" data-placement="top" title="{{'BUG.EDIT' | translate}}">
                 <i class="fa fa-pencil "></i>
             </button>
         </div>
         <hr>
-        <p>{{bugDetail.description}}</p>
-
-        <a class="small text-decoration-none" data-toggle="collapse" data-target="#codeCollapse" role="button" aria-expanded="false" aria-controls="codeCollapse">
-            {{"BUG.SEE-CODE" | translate}} 
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-            </svg>
-        </a>
-        <div class="collapse" id="codeCollapse">
-            <div class="card card-body" style="background-color:#23241f">
-              <code>{{bugDetail.code}}</code>
-            </div>
-        </div>
+        <p [innerHTML]="bugDetail.description"></p>
 
         <p class="lead mt-4">{{'BUG.ANSWERS.TITLE' | translate}}</p>
         <div class="card mb-2" [ngClass]="{'border-success': reply.bestAnswer}" *ngFor="let reply of pageReply.content | paginate : {
@@ -36,8 +26,11 @@
             totalItems: pageReply.totalElements
         }">
             <div class="ml-2 mt-1 mb-1 mr-1">
-                <span data-toggle="tooltip" data-placement="top" title="{{'BUG.ANSWERS.SELECT-BEST-ANSWER' | translate}}">
-                    <button (click)="setBestAnswerId(reply.id!!)" *ngIf="isPostOwner" type="button" class="btn btn-success btn-sm float-right" data-toggle="modal" data-target="#bestAnswerModal">
+                <span>
+                    <button onmouseenter="$(this).tooltip('show')" data-toggle="tooltip" data-placement="top" title="{{'BUG.ANSWERS.DELETE' | translate}}" (click)="setBestAnswerId(reply.id!!)" *ngIf="isAnswerOwner.get(reply.id!!)" type="button" class="btn btn-danger btn-sm float-right ml-2" data-toggle="modal" data-target="#deleteAnswerModal">
+                        <i class="fa fa-trash "></i>
+                    </button>
+                    <button onmouseenter="$(this).tooltip('show')" data-toggle="tooltip" data-placement="top" title="{{'BUG.ANSWERS.SELECT-BEST-ANSWER' | translate}}" (click)="setBestAnswerId(reply.id!!)" *ngIf="isPostOwner" type="button" class="btn btn-success btn-sm float-right ml-2" data-toggle="modal" data-target="#bestAnswerModal">
                         <i class="fa fa-check "></i>
                     </button>
                 </span>
@@ -63,14 +56,17 @@
         </div>
     </div>
 
-    <div *ngIf="isAuthenticated" class="container p-3 mt-2" style="background-color: white;">
-        <p class="text-center lead">{{'BUG.ANSWERS.SEND-ANSWER-TITLE' | translate}}</p>
+    <div *ngIf="isAuthenticated" class="container p-3 mt-2 text-center" style="background-color: white;">
+        <p class="lead">{{'BUG.ANSWERS.SEND-ANSWER-TITLE' | translate}}</p>
         <form [formGroup]="replyForm">
             <div class="form-group">
-                <textarea id="description" class="form-control" formControlName="description" oninput="this.style.height = ''; this.style.height = this.scrollHeight +'px'"></textarea>
+                <textarea onmouseenter="$(this).tooltip('show')" onkeydown="$(this).tooltip('hide')" data-toggle="tooltip" data-placement="right" title="{{'BUG.EXPLAIN-CODE-FORMATIING' | translate}}" id="description" class="form-control" formControlName="description" oninput="this.style.height = ''; this.style.height = this.scrollHeight +'px'"></textarea>
+                <span class="small" id="error-message" *ngIf="hasError('description')">
+                    {{ getMessageError('description') }}
+                </span>
             </div>
             <div class="align-items-center text-center">
-                <button class="btn btn-primary" type="submit">
+                <button class="btn btn-primary" type="submit" (click)="createNewReply()">
                     <span>{{'BUG.ANSWERS.SUBMIT' | translate}}</span>
                 </button>
             </div>
@@ -79,12 +75,12 @@
 </div>    
 
 
-<!-- Delete Modal -->
+<!-- Delete Bug Modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">{{'BUG.DELETE-DESCRIPTION' | translate}}</h5>
+          <h5 class="modal-title" id="exampleModalLabel">{{'BUG.DELETE-TITLE' | translate}}</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -117,6 +113,27 @@
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'BUG.BUTTON-CLOSE-MODAL' | translate}}</button>
             <button (click)="setBestAnswer()" type="button" class="btn btn-success" data-dismiss="modal">{{'BUG.BUTTON-CONFIRM-MODAL' | translate}}</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- Answer delete modal -->
+<div class="modal fade" id="deleteAnswerModal" tabindex="-1" role="dialog" aria-labelledby="deleteAnswerModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{'BUG.DELETE-TITLE' | translate}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <p>{{'BUG.DELETE-ANSWER-DESCRIPTION' | translate}}</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'BUG.BUTTON-CLOSE-MODAL' | translate}}</button>
+            <button (click)="deleteBug()" type="button" class="btn btn-danger" data-dismiss="modal">{{'BUG.BUTTON-DELETE-MODAL' | translate}}</button>
         </div>
       </div>
     </div>

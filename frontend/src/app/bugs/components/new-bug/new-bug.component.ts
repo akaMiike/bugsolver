@@ -66,7 +66,6 @@ export class NewBugComponent implements OnInit, AfterViewInit{
     this.loading = true;
     this.bugsService.createBug(
       this.newBugForm.value.title!!,
-      "código",
       this.newBugForm.value.description!!,
       this.newBugForm.value.categories!!.map(c => ({id: c.id}))
     ).subscribe((newBug) => {

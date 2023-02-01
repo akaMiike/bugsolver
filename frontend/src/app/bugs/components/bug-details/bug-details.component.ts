@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router} from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { Page } from 'src/app/shared/models/page.model';
+import { FormValidationsService } from 'src/app/shared/service/form-validations.service';
+import { HtmlConverter } from 'src/app/shared/utils/html-converter';
 import { Bug } from '../../models/bug.model';
 import { Reply } from '../../models/reply.model';
 import { BugsService } from '../../service/bugs/bugs.service';
@@ -13,7 +15,7 @@ import { ReplyService } from '../../service/reply/reply.service';
 @Component({
   selector: 'app-bug-details',
   templateUrl: './bug-details.component.html',
-  styleUrls: ['./bug-details.component.css']
+  styleUrls: ['./bug-details.component.css'],
 })
 export class BugDetailsComponent implements OnInit{
 
@@ -21,6 +23,7 @@ export class BugDetailsComponent implements OnInit{
   bugId: number = 0;
   bugDetail = <Bug>{};
   isPostOwner: boolean = false;
+  isAnswerOwner: Map<number,boolean> = new Map<number,boolean>();
   isAuthenticated: boolean = false;
 
   pageReply: Page<Reply> = new Page<Reply>();
@@ -37,7 +40,9 @@ export class BugDetailsComponent implements OnInit{
     private router: Router,
     private toastr: ToastrService,
     private fb: FormBuilder,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private formValidations: FormValidationsService,
+    private htmlConverter: HtmlConverter
   ){}
 
   ngOnInit(): void {
@@ -49,10 +54,21 @@ export class BugDetailsComponent implements OnInit{
     })
   }
 
+  hasError(formControlName: string): boolean {
+    return this.formValidations.hasError(this.replyForm, formControlName);
+  }
+
+  getMessageError(formControlName: string): string {
+    return this.formValidations.getMessageError(this.replyForm, formControlName);
+  }
+
   getReplies(){
     this.pageReply.size = 5;
     this.pageReply.sort = "createdAt,DESC"
     this.bugsService.getAllRepliesByBugId(this.bugId, this.pageReply).subscribe((page) => {
+      page.content.forEach( (reply) => {
+        this.isAnswerOwner.set(reply.id!!, this.isLoggedUserOwner(reply.user.username))
+      })
       this.pageReply.content = page.content;
       this.pageReply.totalElements = page.totalElements;
     });
@@ -67,8 +83,10 @@ export class BugDetailsComponent implements OnInit{
   getBugById(){
     this.bugsService.getById(this.bugId).subscribe(
       bug => {
+        bug.description = this.htmlConverter.getCodeSnippetAsHtml(bug.description)
+
         this.bugDetail = bug;
-        this.isPostOwner = this.bugDetail.user.username === localStorage.getItem('LOGGED_IN_USERNAME');
+        this.isPostOwner = this.isLoggedUserOwner(this.bugDetail.user.username);
       },
       err => {
         if(err.status == 404){
@@ -100,6 +118,20 @@ export class BugDetailsComponent implements OnInit{
 
   setBestAnswerId(replyId: number){
     this.bestAnswerId = replyId;
+  }
+
+  createNewReply(){
+    this.bugsService.createBugReply(this.bugId, this.replyForm.value.description!!).subscribe(() => {
+      this.toastr.success(
+        this.translate.instant("BUG.ANSWERS.CREATED")
+      )
+      this.getRepliesByPage(1);
+      this.replyForm.reset()
+    })
+  }
+
+  isLoggedUserOwner(userOwner: string){
+   return userOwner === localStorage.getItem('LOGGED_IN_USERNAME')  
   }
 
 }

@@ -75,14 +75,17 @@
             "ANSWERED-BY-TEXT":"Respondido por",
             "ANSWERED-AT-TEXT":"Respondido em",
             "SUBMIT":"Enviar",
-            "SEND-ANSWER-TITLE": "Enviar nova resposta"
+            "SEND-ANSWER-TITLE": "Enviar nova resposta",
+            "DELETE": "Excluir resposta"
         },
         "TITLE-FIELD": "Título",
         "DESCRIPTION-FIELD":"Descreva seu bug",
+        "EXPLAIN-CODE-FORMATIING": "Para inserir um trecho de código, insira o código entre três aspas invertidas.\n Exemplo: ``` [código] ```",
         "BUTTON-CONFIRM-MODAL": "Confirmar",
         "BUTTON-DELETE-MODAL": "Deletar",
         "BUTTON-CLOSE-MODAL": "Fechar",
         "DELETE-TITLE": "Confirmar exclusão",
+        "DELETE-ANSWER-DESCRIPTION": "Tem certeza que deseja excluir a resposta?",
         "DELETE-DESCRIPTION": "Tem certeza que deseja excluir o post?",
         "DELETE-CONFIRMATION": "Confirmar exclusão",
         "DELETED-SUCCESSFULLY": "Excluido com sucesso.",
