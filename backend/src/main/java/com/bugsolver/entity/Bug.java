@@ -33,9 +33,6 @@ public class Bug {
     @NotBlank(message = "bug.title.not-blank")
     private String title;
 
-    @NotBlank(message = "bug.code.not-blank")
-    private String code;
-
     @NotBlank(message = "bug.description.not-blank")
     private String description;
 

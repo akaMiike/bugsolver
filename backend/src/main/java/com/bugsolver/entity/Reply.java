@@ -31,8 +31,6 @@ public class Reply {
     @NotBlank(message = "reply.description.not-blank")
     private String description;
 
-    private String code;
-
     @JsonProperty(access = READ_ONLY)
     @Column(name="created_at")
     private ZonedDateTime createdAt = ZonedDateTime.now();
