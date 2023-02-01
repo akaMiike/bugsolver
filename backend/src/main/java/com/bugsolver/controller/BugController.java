@@ -3,6 +3,8 @@ package com.bugsolver.controller;
 import com.bugsolver.entity.Bug;
 import com.bugsolver.entity.Reply;
 import com.bugsolver.entity.User;
+import com.bugsolver.exception.reply.NotReplyAuthorException;
+import com.bugsolver.exception.reply.ReplyNotFoundException;
 import com.bugsolver.exception.user.NotBugAuthorException;
 import com.bugsolver.service.BugService;
 import com.bugsolver.service.ReplyService;
@@ -89,10 +91,11 @@ public class BugController {
     public ResponseEntity<Bug> updateBugById(Principal principal,
                                              @PathVariable("id") Long id,
                                              @Valid @RequestBody Bug bugUpdated){
-        String username = principal.getName();
-        User userLoggedIn = userService.findByUsername(username);
 
-        bugUpdated.setUser(userLoggedIn);
+        if(!bugService.isBugAuthor(id, principal.getName())){
+            throw new NotBugAuthorException();
+        }
+
         Bug updatedBug = bugService.update(id, bugUpdated);
         return ResponseEntity.ok(updatedBug);
 

@@ -12,6 +12,8 @@ import javax.transaction.Transactional;
 
 public interface ReplyRepository extends JpaRepository<Reply, Long> {
 
+    Boolean existsByIdAndUser_Username(Long id, String username);
+
     @Query(value = "SELECT r FROM Reply r WHERE r.bug.id = :bugId")
     Page<Reply> findAllByBugId(Pageable pageable, @Param("bugId") Long bugId);
 

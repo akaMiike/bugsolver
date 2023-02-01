@@ -15,6 +15,8 @@ public interface BugRepository extends JpaRepository<Bug, Long>, JpaSpecificatio
 
     Page<Bug> findBugByTitleContainingIgnoreCase(Pageable pageable, String title);
 
+    Boolean existsBugByIdAndUser_Username(Long id, String username);
+
     @Query(value = "SELECT b.* FROM Bugs as b JOIN Users as u ON b.user_id = u.id AND u.id = :idUser", nativeQuery = true)
     Page<Bug> findBugsByUserId(Pageable pageable, @Param("idUser") Long idUser);
 

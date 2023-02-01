@@ -39,12 +39,13 @@ public class BugService {
     }
 
     public Bug update(Long id, Bug bug){
-        if(!bugRepository.existsById(id)){
-            throw new BugNotFoundException();
-        }
+        Bug oldBug = findById(id);
 
-        bug.setId(id);
-        return bugRepository.save(bug);
+        oldBug.setDescription(bug.getDescription());
+        oldBug.setTitle(bug.getTitle());
+        oldBug.setCategories(bug.getCategories());
+
+        return bugRepository.save(oldBug);
     }
 
     public Bug findById(Long id){
@@ -75,6 +76,10 @@ public class BugService {
 
     public Page<Bug> findBugsByUserId(Pageable pageable, Long id){
         return bugRepository.findBugsByUserId(pageable, id);
+    }
+
+    public boolean isBugAuthor(Long bugId, String author){
+        return bugRepository.existsBugByIdAndUser_Username(bugId, author);
     }
 
 }

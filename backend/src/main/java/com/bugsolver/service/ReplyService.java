@@ -30,12 +30,10 @@ public class ReplyService {
     }
 
     public Reply update(Long id, Reply reply){
-        if(!replyRepository.existsById(id)){
-            throw new ReplyNotFoundException();
-        }
+        Reply oldReply = findById(id);
+        oldReply.setDescription(reply.getDescription());
 
-        reply.setId(id);
-        return replyRepository.save(reply);
+        return replyRepository.save(oldReply);
     }
 
     @Transactional
@@ -67,5 +65,9 @@ public class ReplyService {
 
     public void delete(Reply reply){
         replyRepository.delete(reply);
+    }
+
+    public boolean isReplyAuthor(Long replyId, String author){
+        return replyRepository.existsByIdAndUser_Username(replyId, author);
     }
 }
