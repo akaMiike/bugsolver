@@ -81,7 +81,7 @@ export class ReplyComponent implements OnInit{
     this.bugsService.updateBestAnswer(this.bug.id!!, this.bestAnswerId).subscribe( () => 
     {
       this.toastr.success(
-        this.translate.instant("REPLY.BEST-ANSWER.UPDATED-SUCCESSFULLY")
+        this.translate.instant("REPLY.UPDATED-SUCCESSFULLY")
       )
       this.getRepliesByPage(1);
     })

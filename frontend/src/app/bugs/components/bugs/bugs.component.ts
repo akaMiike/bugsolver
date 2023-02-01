@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl } from '@angular/forms';
-import { TranslateService } from '@ngx-translate/core';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { IDropdownSettings} from 'ng-multiselect-dropdown';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { Page } from 'src/app/shared/models/page.model';
@@ -29,10 +29,10 @@ export class BugsComponent implements OnInit {
     singleSelection: false,
     idField: 'id',
     textField: 'name',
+    searchPlaceholderText: this.translate.instant("CATEGORY.SEARCH"),
+    noDataAvailablePlaceholderText: this.translate.instant("CATEGORY.NOT-FOUND"),
     enableCheckAll: false,
-    searchPlaceholderText: "Buscar",
     itemsShowLimit: 6,
-    noDataAvailablePlaceholderText: "Nenhuma categoria encontrada.",
     allowSearchFilter: true
   };
 
@@ -47,6 +47,9 @@ export class BugsComponent implements OnInit {
   ) { }
     
   ngOnInit() {
+    this.categoriesDropdownSettings.searchPlaceholderText = this.translate.instant("CATEGORY.SEARCH")
+    this.categoriesDropdownSettings.noDataAvailablePlaceholderText = this.translate.instant("CATEGORY.NOT-FOUND")
+    
     this.pageConfig.size = 9;
     this.getCategories();
     this.getBugs(this.pageConfig);

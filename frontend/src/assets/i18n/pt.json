@@ -13,7 +13,6 @@
 
     "NAVBAR":{
         "EXPLORE": "Explorar",
-        "SEARCH-BAR": "Procure por bugs pelo título",
         "WELCOME_LOGGED_USER_MESSAGE": "Bem-vindo"
     },
 
@@ -70,7 +69,6 @@
         "BUTTON-CLOSE-MODAL": "Fechar",
         "DELETE-TITLE": "Confirmar exclusão",
         "DELETE-DESCRIPTION": "Tem certeza que deseja excluir o post?",
-        "DELETE-CONFIRMATION": "Confirmar exclusão",
         "DELETED-SUCCESSFULLY": "Excluido com sucesso.",
         "CREATE-NEW-BUTTON":"Criar Novo",
         "CREATED-BY-TEXT":"Criado por",
@@ -106,6 +104,12 @@
     },
 
     "CATEGORY":{
-        "DESCRIPTION-FIELD":"Selecione as categorias"
+        "DESCRIPTION-FIELD":"Selecione as categorias",
+        "SEARCH":"Buscar",
+        "NOT-FOUND": "Nenhuma categoria encontrada."
+    },
+
+    "SEARCH":{
+        "BAR":"Buscar por título"
     }
 }

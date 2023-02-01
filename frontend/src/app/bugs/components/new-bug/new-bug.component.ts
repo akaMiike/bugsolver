@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { ToastrService } from 'ngx-toastr';
 import { CategoryService } from 'src/app/shared/service/category.service';
@@ -20,9 +20,7 @@ export class NewBugComponent implements OnInit, AfterViewInit{
     idField: 'id',
     textField: 'name',
     enableCheckAll: false,
-    searchPlaceholderText: "Buscar",
     itemsShowLimit: 6,
-    noDataAvailablePlaceholderText: "Nenhuma categoria encontrada.",
     allowSearchFilter: true
   };
 
@@ -51,9 +49,10 @@ export class NewBugComponent implements OnInit, AfterViewInit{
   }
   
   ngOnInit(): void {
-    this.getCategories();
+    this.categoriesDropdownSettings.searchPlaceholderText = this.translate.instant("CATEGORY.SEARCH")
+    this.categoriesDropdownSettings.noDataAvailablePlaceholderText = this.translate.instant("CATEGORY.NOT-FOUND")
   }
-
+  
   hasError(formControlName: string): boolean {
     return this.formValidations.hasError(this.newBugForm, formControlName);
   }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { ToastrService } from 'ngx-toastr';
 import { BugsService } from 'src/app/bugs/service/bugs/bugs.service';
@@ -21,9 +21,9 @@ export class UpdateBugComponent implements OnInit{
     idField: 'id',
     textField: 'name',
     enableCheckAll: false,
-    searchPlaceholderText: "Buscar",
     itemsShowLimit: 6,
-    noDataAvailablePlaceholderText: "Nenhuma categoria encontrada.",
+    searchPlaceholderText: this.translate.instant("CATEGORY.SEARCH"),
+    noDataAvailablePlaceholderText: this.translate.instant("CATEGORY.NOT-FOUND"),
     allowSearchFilter: true
   };
 
@@ -52,6 +52,9 @@ export class UpdateBugComponent implements OnInit{
   ){}
 
   ngOnInit(): void {
+    this.categoriesDropdownSettings.searchPlaceholderText = this.translate.instant("CATEGORY.SEARCH")
+    this.categoriesDropdownSettings.noDataAvailablePlaceholderText = this.translate.instant("CATEGORY.NOT-FOUND")
+
     this.bugId = this.routerAct.snapshot.params['id'];
     this.getBugById();
     this.getCategories();

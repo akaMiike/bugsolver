@@ -1,10 +1,10 @@
 <div class="root justify-content-center min-vh-100 p-4" id="root-background-div">
   <div>
     <form class="form-inline" [formGroup]="form">
-      <input class="form-control mr-sm-2" style="width:40%" type="search" placeholder="Buscar por título" aria-label="Search" formControlName="title">
+      <input class="form-control mr-sm-2" style="width:40%" type="search" placeholder="{{'SEARCH.BAR' | translate}}" aria-label="Search" formControlName="title">
       <ng-multiselect-dropdown class=" mr-sm-2 select-tags multiselect-dropdown" style="width:25%"
       formControlName="categories"
-      placeholder="Selecione as tags"
+      placeholder="{{'CATEGORY.DESCRIPTION-FIELD' | translate}}"
       [(ngModel)]="selectedCategories"
       [settings]="categoriesDropdownSettings"
       [data]="categoriesList"
