@@ -47,13 +47,6 @@
     },
     
     "BUG":{
-        "BEST-ANSWER": {
-            "TITLE": "Confirmar escolha de melhor resposta",
-            "DESCRIPTION":"Deseja escolher essa resposta como a melhor resposta?",
-            "OBS":"Obs: Caso já exista uma outra resposta escolhida, ela será substituida.",
-            "UPDATED-SUCCESSFULLY": "Resposta atualizada com sucesso."
-        },
-
         "UPDATE":{
             "BUTTON-UPDATE": "Salvar",
             "UPDATE":"Atualizar",
@@ -69,16 +62,6 @@
             "BUTTON": "Buscar"
         },
 
-        "ANSWERS":{
-            "NO-ANSWER-FOUND": "Nenhuma resposta encontrada.",
-            "SELECT-BEST-ANSWER": "Selecionar como melhor resposta",
-            "TITLE": "Respostas",
-            "ANSWERED-BY-TEXT":"Respondido por",
-            "ANSWERED-AT-TEXT":"Respondido em",
-            "SUBMIT":"Enviar",
-            "SEND-ANSWER-TITLE": "Enviar nova resposta",
-            "DELETE": "Excluir resposta"
-        },
         "TITLE-FIELD": "Título",
         "DESCRIPTION-FIELD":"Descreva seu bug",
         "EXPLAIN-CODE-FORMATIING": "Para inserir um trecho de código, insira o código entre três aspas invertidas.\n Exemplo: ``` [código] ```",
@@ -86,7 +69,6 @@
         "BUTTON-DELETE-MODAL": "Deletar",
         "BUTTON-CLOSE-MODAL": "Fechar",
         "DELETE-TITLE": "Confirmar exclusão",
-        "DELETE-ANSWER-DESCRIPTION": "Tem certeza que deseja excluir a resposta?",
         "DELETE-DESCRIPTION": "Tem certeza que deseja excluir o post?",
         "DELETE-CONFIRMATION": "Confirmar exclusão",
         "DELETED-SUCCESSFULLY": "Excluido com sucesso.",
@@ -98,6 +80,29 @@
         "NO-BUG-FOUND": "Nenhum bug encontrado.",
         "EDIT": "Editar",
         "REMOVE": "Excluir"
+    },
+
+    "REPLY":{
+        "BEST-ANSWER": {
+            "TITLE": "Confirmar escolha de melhor resposta",
+            "DESCRIPTION":"Deseja escolher essa resposta como a melhor resposta?",
+            "OBS":"Obs: Caso já exista uma outra resposta escolhida, ela será substituida.",
+            "UPDATED-SUCCESSFULLY": "Resposta atualizada com sucesso."
+        },
+
+        "NO-ANSWER-FOUND": "Nenhuma resposta encontrada.",
+        "SEND-ANSWER-TITLE": "Enviar nova resposta",
+        "SELECT-BEST-ANSWER": "Selecionar como melhor resposta",
+        "TITLE": "Respostas",
+        "ANSWERED-BY-TEXT":"Respondido por",
+        "ANSWERED-AT-TEXT":"Respondido em",
+        "CREATED": "Resposta criada com sucesso",
+        "EDIT": "Editar",
+        "SUBMIT":"Enviar",
+        "DELETE": "Excluir resposta",
+        "DELETE-ANSWER-DESCRIPTION": "Tem certeza que deseja excluir a resposta?",
+        "DELETED-SUCCESSFULLY": "Resposta excluída com sucesso",
+        "UPDATED-SUCCESSFULLY": "Resposta atualizada com sucesso"
     },
 
     "CATEGORY":{

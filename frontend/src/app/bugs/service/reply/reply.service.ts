@@ -14,4 +14,14 @@ export class ReplyService {
 
   constructor(private http: HttpClient) { }
 
+  updateReply(replyId: number, description: string){
+    return this.http.put(this.URL + "/" + replyId, {
+      description: description
+    })
+  }
+
+  deleteReply(replyId: number){
+    return this.http.delete(this.URL + "/" + replyId)
+  }
+
 }
