@@ -95,7 +95,6 @@ export class UpdateBugComponent implements OnInit{
     this.bugsService.updateBug(
       this.bugId,
       this.editBugForm.value.title!!,
-      "código",
       this.editBugForm.value.description!!,
       this.editBugForm.value.categories!!.map(c => ({id: c.id}))
     ).subscribe((newBug) => {

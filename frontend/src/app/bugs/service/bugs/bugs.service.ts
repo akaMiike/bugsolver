@@ -39,10 +39,9 @@ export class BugsService {
     })
   }
 
-  createBug(title: string, code:string, description: string, categories: any[]): Observable<Bug>{
+  createBug(title: string, description: string, categories: any[]): Observable<Bug>{
     return this.http.post<Bug>(this.URL, {
       title: title,
-      code: code,
       description: description,
       categories: categories
     })
@@ -63,12 +62,17 @@ export class BugsService {
     return this.http.put<void>(this.URL + "/" + idBug + "/reply/" + idReply, null);
   }
 
-  updateBug(id: number, title: string, code:string, description: string, categories: any[]): Observable<Bug>{
+  updateBug(id: number, title: string, description: string, categories: any[]): Observable<Bug>{
     return this.http.put<Bug>(this.URL + "/" + id, {
       title: title,
-      code: code,
       description: description,
       categories: categories
+    })
+  }
+
+  createBugReply(bugId: number, description: string){
+    return this.http.post(this.URL + "/" + bugId + "/reply", {
+      description: description
     })
   }
 
