@@ -8,31 +8,31 @@ import { AuthService } from '../services/auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuardService implements CanActivateChild{
-
-  isWarningShowed: boolean = true;
+export class AuthGuardService implements CanActivate{
 
   constructor(
     private authService: AuthService,
     private toastr: ToastrService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private router: Router
   ) { }
 
-  canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    if(this.authService.isAuthenticated()){
-      this.isWarningShowed = false;
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+    if(!!this.authService.getAuthToken()
+      && this.authService.isRefreshTokenExpired()){
+        this.toastr.info(
+          this.translate.instant("AUTH.SESSION_EXPIRED")
+        )
+        this.authService.logout()
+        this.router.navigate(['/user/login'])
     }
-    else{
-      if(!this.isWarningShowed
-        && !!this.authService.getAuthToken()
-        && this.authService.isRefreshTokenExpired()){
-          this.toastr.info(
-            this.translate.instant("AUTH.SESSION_EXPIRED")
-          )
-          this.authService.logout()
-          this.isWarningShowed = true
-      }
+    else if(!this.authService.isAuthenticated()){
+      this.toastr.info(
+        this.translate.instant("AUTH.UNAUTHORIZED-ROUTE")
+        )
+      this.router.navigate(['/user/login'])
     }
+    
     return true;
   }
 }

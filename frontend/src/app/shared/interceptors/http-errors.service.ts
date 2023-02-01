@@ -20,15 +20,6 @@ export class HttpErrorsService implements HttpInterceptor{
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(catchError(response => {
-      if(response instanceof HttpErrorResponse){
-        if(response.status == 401){
-          this.toastr.info(
-            this.translate.instant('AUTH.SESSION_EXPIRED')
-          )
-          this.authService.logout()
-          this.router.navigate(['/user/login'])
-        }
-      }
 
       if(response.error && response.error.errors){
         (response.error.errors as string[]).forEach(error => {

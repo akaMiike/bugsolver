@@ -13,11 +13,14 @@ export class HeadersService implements HttpInterceptor {
   constructor(private injector: Injector) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    return next.handle(
-      req.clone({
-        headers: this.configure(req.headers)
-      })
-    )
+    if(req.url.indexOf('/auth/refresh') === -1)
+      return next.handle(
+        req.clone({
+          headers: this.configure(req.headers)
+        })
+      )
+    else
+      return next.handle(req)
   }
 
   configure(headers: HttpHeaders){

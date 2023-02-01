@@ -29,7 +29,7 @@ export class NavbarComponent implements OnInit {
     this.authService.isAuthenticatedObs.subscribe(isAuthenticated => {
       this.isLoggedIn = isAuthenticated
       if(isAuthenticated){
-        this.loggedInUsername = localStorage.getItem("LOGGED_IN_USERNAME")!!
+        this.loggedInUsername = sessionStorage.getItem("LOGGED_IN_USERNAME")!!
       }
     })
   }

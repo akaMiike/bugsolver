@@ -5,6 +5,7 @@ import { BugsComponent } from './components/bugs/bugs.component';
 import { BugDetailsComponent } from './components/bug-details/bug-details.component';
 import { NewBugComponent } from './components/new-bug/new-bug.component';
 import { UpdateBugComponent } from './components/update-bug/update-bug.component';
+import { AuthGuardService } from '../auth/guards/auth-guard.service';
 
 export function bugDetailsMatcher(url: UrlSegment[]){
   if(url.length == 1 && url[0].path.match(/^\d+$/)){
@@ -24,9 +25,9 @@ export function updateBugMatcher(url: UrlSegment[]){
 
 const routes: Routes = [
   {path: '', component: BugsComponent, pathMatch: 'full'},
-  {path: 'new', component: NewBugComponent, pathMatch: 'full'},
+  {path: 'new', canActivate:[AuthGuardService], component: NewBugComponent, pathMatch: 'full'},
   {matcher: bugDetailsMatcher, component: BugDetailsComponent},
-  {matcher: updateBugMatcher, component: UpdateBugComponent},
+  {matcher: updateBugMatcher, canActivate:[AuthGuardService] ,component: UpdateBugComponent},
   {path: '**', redirectTo: 'bugs'}
 ];
 

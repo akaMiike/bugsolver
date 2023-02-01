@@ -42,7 +42,8 @@
     },
 
     "AUTH":{
-        "SESSION_EXPIRED": "Sessão expirada, por favor entre novamente."
+        "SESSION_EXPIRED": "Sessão expirada, por favor entre novamente.",
+        "UNAUTHORIZED-ROUTE": "Faça o login para continuar."
     },
     
     "BUG":{

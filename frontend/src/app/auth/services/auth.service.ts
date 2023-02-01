@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { Injectable, OnDestroy } from '@angular/core';
+import { BehaviorSubject, interval, Observable, Subscribable, Subscription, tap } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { Tokens } from '../models/tokens.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService implements OnDestroy{
 
   private readonly URL: string = `${environment.api}/auth`
   private readonly AUTH_TOKEN_KEY: string = "AUTH_TOKEN"
@@ -20,42 +20,60 @@ export class AuthService {
 
   public isAuthenticatedObs: Observable<boolean> = this._isAuthenticatedSubject.asObservable();
 
+  private refreshInterval: Subscription = new Subscription();
+
   constructor(private http: HttpClient) { }
+
+  ngOnDestroy(): void{
+    this.refreshInterval.unsubscribe()
+  }
+
+  refreshTokenInterval(authTokenExpirationDate: Date){
+    if(this.isAuthenticated()){
+      const authTokenExpiresAt = new Date(authTokenExpirationDate).getTime() - new Date().getTime()
+      const reloadInterval = authTokenExpiresAt - (60*1000)
+      this.refreshInterval = interval(reloadInterval).subscribe(() => {
+        this.refreshToken()
+      })
+    }
+  }
 
   login(username: string, password: string){
     return this.http.post<Tokens>(`${this.URL}/login`, {
       username: username,
       password: password
     }).pipe(
-      tap(tokens => this.saveTokens(tokens, username))
+      tap(tokens => {
+        this.saveTokens(tokens, username)
+        this.refreshTokenInterval(tokens.authTokenExpiresAt)
+      })
     )
   }
 
   refreshToken(){
-    return this.http.get<Tokens>(`${this.URL}/refresh`, {
-      headers: {
-        "Authorization": "Bearer " + this.getRefreshToken()
-      }
-    }).pipe(
-      tap(tokens => this.saveTokens(tokens, ' '))
+    this.http.post<Tokens>(`${this.URL}/refresh`, {
+      bearerToken: this.getAuthToken(),
+      refreshToken: this.getRefreshToken()
+    }).subscribe(
+      (tokens) => {this.saveTokens(tokens, '')}
     );
   }
 
   logout(){
     this._isAuthenticatedSubject.next(false);
-    localStorage.clear()
+    sessionStorage.clear()
   }
 
   getAuthToken(): string{
-    return localStorage.getItem(this.AUTH_TOKEN_KEY)!;
+    return sessionStorage.getItem(this.AUTH_TOKEN_KEY)!;
   }
 
   getRefreshToken(): string{
-    return localStorage.getItem(this.REFRESH_TOKEN_KEY)!;
+    return sessionStorage.getItem(this.REFRESH_TOKEN_KEY)!;
   }
   
   isRefreshTokenExpired(){
-    var refreshTokenExpiresAt = new Date(localStorage.getItem('REFRESH_TOKEN_EXPIRES_AT')!!)
+    var refreshTokenExpiresAt = new Date(sessionStorage.getItem('REFRESH_TOKEN_EXPIRES_AT')!!)
     return new Date().toString() > refreshTokenExpiresAt.toString()
   }
 
@@ -69,12 +87,12 @@ export class AuthService {
 
   saveTokens(tokens: Tokens, username: string): void {
 
-    localStorage.setItem(this.AUTH_TOKEN_KEY, tokens.authToken)
-    localStorage.setItem(this.REFRESH_TOKEN_KEY, tokens.refreshToken)
-    localStorage.setItem(this.AUTH_TOKEN_EXPIRES_AT_KEY, tokens.authTokenExpiresAt.toString())
-    localStorage.setItem(this.REFRESH_TOKEN_EXPIRES_AT_KEY, tokens.refreshTokenExpiresAt.toString())
+    sessionStorage.setItem(this.AUTH_TOKEN_KEY, tokens.authToken)
+    sessionStorage.setItem(this.REFRESH_TOKEN_KEY, tokens.refreshToken)
+    sessionStorage.setItem(this.AUTH_TOKEN_EXPIRES_AT_KEY, tokens.authTokenExpiresAt.toString())
+    sessionStorage.setItem(this.REFRESH_TOKEN_EXPIRES_AT_KEY, tokens.refreshTokenExpiresAt.toString())
     
-    if(username.trim().length > 0){localStorage.setItem(this.LOGGED_IN_USERNAME_KEY, username)}
+    if(username.length > 0){sessionStorage.setItem(this.LOGGED_IN_USERNAME_KEY, username)}
 
     this._isAuthenticatedSubject.next(true);
   }

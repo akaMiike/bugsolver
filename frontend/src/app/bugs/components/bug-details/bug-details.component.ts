@@ -131,7 +131,7 @@ export class BugDetailsComponent implements OnInit{
   }
 
   isLoggedUserOwner(userOwner: string){
-   return userOwner === localStorage.getItem('LOGGED_IN_USERNAME')  
+   return userOwner === sessionStorage.getItem('LOGGED_IN_USERNAME')  
   }
 
 }
