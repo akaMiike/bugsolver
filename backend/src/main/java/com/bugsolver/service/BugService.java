@@ -68,6 +68,10 @@ public class BugService {
         return bugRepository.findAll(bugSpecification.getBugSpecification(searchCriteria), pageable);
     }
 
+    public Long countAllBugsWithBestAnswer(){
+        return bugRepository.countAllBugsWithBestAnswer();
+    }
+
     public boolean isBugAuthor(Long bugId, String author){
         return bugRepository.existsBugByIdAndUser_Username(bugId, author);
     }

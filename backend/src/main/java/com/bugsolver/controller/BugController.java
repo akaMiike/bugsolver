@@ -11,12 +11,14 @@ import com.bugsolver.entity.BugSearchCriteria;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.Map;
 import java.util.Set;
 
 @RestController
@@ -27,6 +29,11 @@ public class BugController {
     private final ReplyService replyService;
     private final BugService bugService;
     private final UserService userService;
+
+    @GetMapping("/solved")
+    public ResponseEntity<Map<String,Long>> getAllBugsSolved(){
+        return ResponseEntity.ok(Map.of("totalBugs", bugService.countAllBugsWithBestAnswer()));
+    }
 
     @GetMapping("")
     public ResponseEntity<Page<Bug>> getAllBugsPaginated(Pageable pageable,
