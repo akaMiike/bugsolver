@@ -1,7 +1,10 @@
 {
     "HOME-PAGE":{
         "EXPLORE": "Comece a Explorar",
-        "DESCRIPTION": "Junte-se a uma das maiores comunidades de resolução de bugs!"
+        "DESCRIPTION":"Desenvolva seu código da melhor forma",
+        "DESCRIPTION-2": "Junte-se a uma das maiores comunidades voltada a refatoração e resolução de bugs!",
+        "TOTAL-USERS": "Total de Usuários",
+        "TOTAL-BUGS-SOLVED": "Bugs Resolvidos"
     },
 
     "PAGINATION":{
@@ -92,7 +95,7 @@
             "OBS":"Obs: Caso já exista uma outra resposta escolhida, ela será substituida.",
             "UPDATED-SUCCESSFULLY": "Resposta atualizada com sucesso."
         },
-
+        "MUST-AUTHENTICATE": "Você deve estar autenticado para responder.",
         "NO-ANSWER-FOUND": "Nenhuma resposta encontrada.",
         "SEND-ANSWER-TITLE": "Enviar nova resposta",
         "SELECT-BEST-ANSWER": "Selecionar como melhor resposta",

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
+import { TotalUsers } from 'src/app/bugs/models/count.model';
 import { environment } from 'src/environments/environment.prod';
 import { User } from '../models/user.model';
 
@@ -25,6 +26,10 @@ export class UserService {
       email: email,
       password: password
     })
+  }
+
+  public getCountOfUsers(){
+    return this.http.get<TotalUsers>(this.URL)
   }
 
 }

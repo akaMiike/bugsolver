@@ -65,6 +65,9 @@
         </div>
     </form>
 </div>  
+<div *ngIf="!isAuthenticated" class="mt-4 text-center text-white">
+    <h4>{{'REPLY.MUST-AUTHENTICATE' | translate}}</h4>
+</div>
 
 <!-- Best answer confirmation modal -->
 <div class="modal fade" id="bestAnswerModal" tabindex="-1" role="dialog" aria-labelledby="bestAnswerModal" aria-hidden="true">

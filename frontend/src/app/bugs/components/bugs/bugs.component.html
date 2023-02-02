@@ -19,7 +19,7 @@
         <i class="fa-solid fa-bug fa-xs ml-1" ></i>
       </button>
       
-      <button class="btn btn-primary ml-2" *ngIf="isAuthenticated" type="button" routerLink="/bugs/new">
+      <button class="btn btn-primary" [ngClass]="{'ml-2':isAuthenticated, 'ml-auto': !isAuthenticated}" type="button" routerLink="/bugs/new">
         <span>{{"BUG.CREATE-NEW-BUTTON" | translate}}</span>
         <i class="fa-solid fa-plus fa-xs ml-1" ></i>
       </button>

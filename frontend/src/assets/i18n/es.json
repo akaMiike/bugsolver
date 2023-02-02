@@ -1,7 +1,10 @@
 {
     "HOME-PAGE":{
         "EXPLORE": "Empezar a Explorar",
-        "DESCRIPTION": "Únase a una de las mayores comunidades de corrección de errores!"
+        "DESCRIPTION":"¡Desarrolla tu código de la mejor manera posible!",
+        "DESCRIPTION-2": "¡Únase a una de las comunidades más grandes de corrección de errores y refactorización!",
+        "TOTAL-USERS": "Usuários Totais",
+        "TOTAL-BUGS-SOLVED": "Bugs Resolvidos"
     },
 
     "PAGINATION":{
@@ -91,7 +94,7 @@
             "DESCRIPTION":"¿Quieres elegir esta respuesta como la mejor respuesta?",
             "OBS":"Obs: Si ya existe una mejor respuesta, será reemplazada."
         },
-
+        "MUST-AUTHENTICATE": "Debes estar autenticado para responder.",
         "NO-ANSWER-FOUND": "No se encontró respuesta.",
         "SEND-ANSWER-TITLE": "Enviar nueva respuesta",
         "SELECT-BEST-ANSWER": "Seleccionar como mejor respuesta",

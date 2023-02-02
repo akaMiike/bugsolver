@@ -1,7 +1,10 @@
 {
     "HOME-PAGE":{
         "EXPLORE": "Begin to Explore",
-        "DESCRIPTION": "Join one of the largest bug fixing communities!"
+        "DESCRIPTION":"Develop your code in the best way possible!",
+        "DESCRIPTION-2": "Join one of the largest bug fixing and refactoring communities!",
+        "TOTAL-USERS": "Total Users",
+        "TOTAL-BUGS-SOLVED": "Bugs Solved"
     },
 
     "PAGINATION":{
@@ -91,7 +94,7 @@
             "DESCRIPTION":"Do you want to choose this answer as the best answer?",
             "OBS":"Obs: If a best answer already exists, it will be replaced."
         },
-
+        "MUST-AUTHENTICATE": "You must be authenticated to reply.",
         "NO-ANSWER-FOUND": "No answer found.",
         "SEND-ANSWER-TITLE": "Submit New Answer",
         "SELECT-BEST-ANSWER": "Select as best answer",

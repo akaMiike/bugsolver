@@ -1,12 +1,21 @@
-<div class="root justify-content-center align-items-center text-center min-vh-100 d-flex p-4" id="root-background-div">
-    <div class="background-custom rounded shadow" style="padding: 12vh;">
-        <span class="display-1 mb-2 text-dark">BUG</span>
-        <span class="display-1 mb-2 text-dark font-weight-bold">SOLVER</span>
-        <h1 class="lead mb-4 text-dark">{{'HOME-PAGE.DESCRIPTION' | translate}}</h1>
-        <hr>
-        <button class="btn btn-lg btn-block mt-4 btn-explore" routerLink="/bugs">
-            <span>{{'HOME-PAGE.EXPLORE' | translate}}</span>
-        </button>
+<div class="root justify-content-center text-left min-vh-100 d-flex" id="root-background-div">
+    <div class="container" style="padding-top: 100px">
+        <div class="row">
+            <div class="col mb-2">
+                <p class="display-3 mb-2 text-white font-weight-bold text-transition-main">{{'HOME-PAGE.DESCRIPTION' | translate}}</p>
+                <h1 class="lead mb-4 text-white text-left text-transition-secondary">{{'HOME-PAGE.DESCRIPTION-2' | translate}}</h1>
+                <hr class="line-transition">
+                <button class="btn btn-lg btn-block mt-4 btn-explore button-transition" routerLink="/bugs">
+                    <span>{{'HOME-PAGE.EXPLORE' | translate}}</span>
+                </button>
+            </div>
+            <div class="col text-right mb-2" style="padding-top:100px">
+                <p class="h2 mb-2 text-white font-weight-bold total-count-transition">{{'HOME-PAGE.TOTAL-USERS' | translate}}</p>
+                <p class="h3 mb-4 text-white total-count-transition">{{totalUsers}}</p>
+                <p class="h2 mb-2 text-white font-weight-bold total-count-transition">{{'HOME-PAGE.TOTAL-BUGS-SOLVED' | translate }}</p>
+                <p class="h3 mb-2 text-white total-count-transition">{{totalBugsSolved}}</p>
+            </div>
+        </div>
     </div>
     <div></div>
 </div>

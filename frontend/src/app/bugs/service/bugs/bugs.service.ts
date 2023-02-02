@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Page } from 'src/app/shared/models/page.model';
 import { environment } from 'src/environments/environment.prod';
 import { Bug } from '../../models/bug.model';
+import { TotalBugsSolved } from '../../models/count.model';
 import { Reply } from '../../models/reply.model';
 
 @Injectable({
@@ -82,5 +83,9 @@ export class BugsService {
 
   getById(id: number): Observable<Bug>{
     return this.http.get<Bug>(this.URL + "/" + id)
+  }
+
+  getCountOfSolvedBugs(){
+    return this.http.get<TotalBugsSolved>(this.URL + "/solved")
   }
 }
