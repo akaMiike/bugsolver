@@ -66,16 +66,8 @@ public class BugService {
         return bugRepository.existsById(id);
     }
 
-    public List<Bug> findAll(){
-        return bugRepository.findAll();
-    }
-
     public Page<Bug> findAll(Pageable pageable, BugSearchCriteria searchCriteria){
         return bugRepository.findAll(bugSpecification.getBugSpecification(searchCriteria), pageable);
-    }
-
-    public Page<Bug> findBugsByUserId(Pageable pageable, Long id){
-        return bugRepository.findBugsByUserId(pageable, id);
     }
 
     public boolean isBugAuthor(Long bugId, String author){

@@ -67,6 +67,7 @@ public class UserService {
         );
     }
 
+
     public User findBugAuthorByReplyId(Long replyId){
         return userRepository.findBugAuthorByReplyId(replyId).orElseThrow(
                 () -> new UserNotFoundException()

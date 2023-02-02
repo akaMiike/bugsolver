@@ -1,6 +1,5 @@
 package com.bugsolver.service;
 
-import com.bugsolver.entity.Bug;
 import com.bugsolver.entity.Reply;
 import com.bugsolver.exception.bug.BugNotFoundException;
 import com.bugsolver.exception.reply.ReplyNotFoundException;
@@ -11,7 +10,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -53,10 +51,6 @@ public class ReplyService {
         return replyRepository.findById(id).orElseThrow(
                 () -> new ReplyNotFoundException()
         );
-    }
-
-    public List<Reply> findAll(){
-        return replyRepository.findAll();
     }
 
     public Page<Reply> findAllByBugId(Pageable pageable, Long bugId){

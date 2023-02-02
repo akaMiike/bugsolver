@@ -21,17 +21,11 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
-    private final BugService bugService;
 
     @PostMapping("/register")
     public ResponseEntity<User> registerUser(@Valid @RequestBody User newUser){
         User userCreated = userService.save(newUser);
         return ResponseEntity.status(HttpStatus.CREATED).body(userCreated);
-    }
-
-    @GetMapping("")
-    public ResponseEntity<List<User>> getAllUsers(){
-        return ResponseEntity.ok(userService.findAll());
     }
 
     @GetMapping("/{id}")
