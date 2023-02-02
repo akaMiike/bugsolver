@@ -1,4 +1,9 @@
 {
+    "HOME-PAGE":{
+        "EXPLORE": "Begin to Explore",
+        "DESCRIPTION": "Join one of the largest bug fixing communities!"
+    },
+
     "PAGINATION":{
         "PREVIOUS-LABEL": "Previous",
         "NEXT-LABEL": "Next"

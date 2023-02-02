@@ -1,4 +1,9 @@
 {
+    "HOME-PAGE":{
+        "EXPLORE": "Empezar a Explorar",
+        "DESCRIPTION": "Únase a una de las mayores comunidades de corrección de errores!"
+    },
+
     "PAGINATION":{
         "PREVIOUS-LABEL": "Anterior",
         "NEXT-LABEL": "Siguiente"

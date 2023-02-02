@@ -1,0 +1,18 @@
+span{
+    font-family:'Roboto', sans-serif;
+    font-weight: 300;
+}
+
+.btn-explore{
+    color:white;
+    background-color:  #17B169;
+}
+
+.btn-explore:hover{
+    color:white;
+    background-color: #1ac474;
+}
+
+.background-custom {
+    background-color: #caffba;
+}
