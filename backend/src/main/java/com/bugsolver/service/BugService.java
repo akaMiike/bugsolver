@@ -5,14 +5,12 @@ import com.bugsolver.entity.Category;
 import com.bugsolver.exception.bug.BugNotFoundException;
 import com.bugsolver.exception.category.CategoryNotFoundException;
 import com.bugsolver.repository.BugRepository;
-import com.bugsolver.util.BugSearchCriteria;
+import com.bugsolver.entity.BugSearchCriteria;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 

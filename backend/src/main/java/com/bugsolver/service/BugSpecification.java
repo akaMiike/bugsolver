@@ -2,7 +2,7 @@ package com.bugsolver.service;
 
 import com.bugsolver.entity.Bug;
 import com.bugsolver.entity.Category;
-import com.bugsolver.util.BugSearchCriteria;
+import com.bugsolver.entity.BugSearchCriteria;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 

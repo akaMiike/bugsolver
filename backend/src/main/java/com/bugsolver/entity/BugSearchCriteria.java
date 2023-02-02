@@ -1,4 +1,4 @@
-package com.bugsolver.util;
+package com.bugsolver.entity;
 
 import lombok.Builder;
 import lombok.Data;
