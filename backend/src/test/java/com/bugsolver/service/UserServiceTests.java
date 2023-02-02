@@ -1,5 +1,7 @@
 package com.bugsolver.service;
 
+import com.bugsolver.entity.Bug;
+import com.bugsolver.entity.Reply;
 import com.bugsolver.entity.User;
 import com.bugsolver.exception.user.AlreadyUsedEmailException;
 import com.bugsolver.exception.user.AlreadyUsedUsernameException;
@@ -205,7 +207,7 @@ public class UserServiceTests {
     }
 
     @Test
-    @DisplayName("WHEN delete an user with invalid id SHOULD throw a UserNotFoundException")
+    @DisplayName("WHEN delete an user with invalid id SHOULD throw UserNotFoundException")
     public void deleteUserWithInvalidId(){
         User userToDelete = new User().builder()
                             .id(1L)
@@ -214,6 +216,36 @@ public class UserServiceTests {
         when(userRepository.existsById(anyLong())).thenReturn(false);
         Assertions.assertThrows(UserNotFoundException.class,
                 () -> userService.deleteById(userToDelete.getId())
+        );
+    }
+
+    @Test
+    @DisplayName("WHEN find an bug author with valid reply id SHOULD return bug author")
+    public void findBugAuthorWithValidReplyId(){
+        User bugAuthor = new User().builder()
+                            .id(1L)
+                            .build();
+
+        Bug bug = new Bug();
+        bug.setUser(bugAuthor);
+
+        Reply reply = new Reply();
+        reply.setId(1L);
+        reply.setBug(bug);
+
+        when(userRepository.findBugAuthorByReplyId(anyLong())).thenReturn(Optional.ofNullable(bugAuthor));
+        assertThat(userService.findBugAuthorByReplyId(reply.getId())).isEqualTo(bugAuthor);
+    }
+
+    @Test
+    @DisplayName("WHEN find an bug author with valid reply id SHOULD throw UserNotFoundException")
+    public void findBugAuthorWithInvalidReplyId(){
+        Reply reply = new Reply();
+        reply.setId(1L);
+
+        when(userRepository.findBugAuthorByReplyId(anyLong())).thenThrow(new UserNotFoundException());
+        Assertions.assertThrows(UserNotFoundException.class,
+                () -> userService.findBugAuthorByReplyId(reply.getId())
         );
     }
 
