@@ -14,7 +14,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { HeadersService } from './shared/interceptors/headers.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+  return new TranslateHttpLoader(http, '/assets/i18n/', '.json?cb=' + new Date().getTime());
 };
 
 @NgModule({

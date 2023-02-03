@@ -19,7 +19,11 @@ export class HttpErrorsService implements HttpInterceptor{
   ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    return next.handle(req).pipe(catchError(response => {
+    return next.handle(req).pipe(catchError((response: HttpErrorResponse) => {
+
+      if(response.error && response.error.message && response.status != 400) {
+        this.toastr.error(response.error.message);
+      }
 
       if(response.error && response.error.errors){
         (response.error.errors as string[]).forEach(error => {

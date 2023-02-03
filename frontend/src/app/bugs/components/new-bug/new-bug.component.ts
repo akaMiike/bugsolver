@@ -51,6 +51,7 @@ export class NewBugComponent implements OnInit, AfterViewInit{
   ngOnInit(): void {
     this.categoriesDropdownSettings.searchPlaceholderText = this.translate.instant("CATEGORY.SEARCH")
     this.categoriesDropdownSettings.noDataAvailablePlaceholderText = this.translate.instant("CATEGORY.NOT-FOUND")
+    this.getCategories();
   }
   
   hasError(formControlName: string): boolean {

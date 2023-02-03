@@ -54,9 +54,6 @@
     <form [formGroup]="replyForm">
         <div class="form-group">
             <textarea onmouseenter="$(this).tooltip('show')" onkeydown="$(this).tooltip('hide')" data-toggle="tooltip" data-placement="right" title="{{'BUG.EXPLAIN-CODE-FORMATIING' | translate}}" id="description" class="form-control" formControlName="description" oninput="this.style.height = ''; this.style.height = this.scrollHeight +'px'"></textarea>
-            <span class="small" id="error-message" *ngIf="hasError('description')">
-                {{ getMessageError('description') }}
-            </span>
         </div>
         <div class="align-items-center text-center">
             <button class="btn btn-primary" type="submit" (click)="createNewReply()">
