@@ -23,10 +23,8 @@ public class ReplyController {
                                              @PathVariable("replyId") Long replyId
     ){
         Reply reply = replyService.findById(replyId);
-        User replyAuthor = reply.getUser();
-        String username = principal.getName();
 
-        if(!replyAuthor.getUsername().equals(username)){
+        if(!replyService.isReplyAuthor(replyId, principal.getName())){
             throw new NotReplyAuthorException();
         }
 
