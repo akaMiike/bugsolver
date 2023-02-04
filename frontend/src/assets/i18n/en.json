@@ -62,7 +62,8 @@
 
         "CREATE":{
             "NEW": "New Bug",
-            "BUTTON-NEW": "New"
+            "BUTTON-NEW": "New",
+            "CREATED-MESSAGE": "Bug created sucessfully."
         },
         
         "SEARCH": {
