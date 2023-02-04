@@ -27,9 +27,6 @@
         <div class="card-body align-items-center text-center" *ngIf="replyToEditId == reply.id!!">
             <form [formGroup]="editReplyForm">
                 <textarea class="form-control" formControlName="description" class="w-100" oninput="this.style.height = ''; this.style.height = this.scrollHeight +'px'"></textarea>
-                <span class="small" id="error-message" *ngIf="hasError('description')">
-                    {{ getMessageError('description') }}
-                </span>
 
                 <button class="btn btn-primary" type="submit" (click)="updateReply(reply.id!!); setReplyToEditId(-1);">
                     <span>{{'REPLY.EDIT' | translate}}</span>
