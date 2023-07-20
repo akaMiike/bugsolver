@@ -23,4 +23,4 @@ The application will be available in `http://localhost:4200`
 ## Exploring the Website
 
 The website is currently hosted on AWS with the Spring Boot server on EC2, the PostgreSQL database on RDS, and the Angular application on S3.
-You can access it **[here](http://bugsolver.s3-website-sa-east-1.amazonaws.com/)**.
+You can access it **[here](http://bugsolver.s3-website-sa-east-1.amazonaws.com/)**. (Currently unavailable).
